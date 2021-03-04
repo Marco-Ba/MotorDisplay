@@ -2561,7 +2561,9 @@ void K3(int x);
 
 void main(void)
 {
-    char cont;
+
+    char cont =0;
+    display7seg (cont);
     display7seg_init();
     int estado = 0;
     int t;
@@ -2605,7 +2607,7 @@ void main(void)
                    break;
            case 4:
                    ++cont;
-
+                   display7seg (cont);
                    estado =5;
                    break;
            case 5:

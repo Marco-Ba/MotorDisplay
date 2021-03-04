@@ -15,7 +15,9 @@
 
 void main(void) 
 {
-    char cont;
+   
+    char cont =0;
+    display7seg (cont);
     display7seg_init();
     int estado = 0;
     int t;
@@ -35,7 +37,7 @@ void main(void)
                    
                    break;
            case 2:
-                   
+                  
                    K1(1);
                    K2(1);
                    K3(0);
@@ -59,7 +61,7 @@ void main(void)
                    break;
            case 4:
                    ++cont;
-                  
+                   display7seg (cont);
                    estado =5;
                    break;
            case 5:

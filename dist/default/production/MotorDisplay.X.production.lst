@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V2.00 build -1524193055 
-                                                                                               Wed Mar 03 16:55:47 2021
+                                                                                               Thu Mar 04 15:34:03 2021
 
 Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 20180527130849
      1  0000                     
@@ -1082,639 +1082,1586 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
   1020                           EECON1 equ 018Ch ;# 
   1021  018C                     # 3546 "C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic16f887.h"
   1022                           EECON2 equ 018Dh ;# 
-  1023  018D                     	FNCALL	_main,_botoes_init
-  1024                           	FNCALL	_main,_contatores_init
-  1025                           	FNCALL	_main,_display7seg_init
-  1026                           	FNROOT	_main
-  1027                           	global	_vetor
-  1028                           psect	idataBANK0,class=CODE,space=0,delta=2,noexec
-  1029                           global __pidataBANK0
-  1030                           __pidataBANK0:
-  1031  079F                     	file	"../disp7seg.X/display7seg.c"
-  1032                           	line	11
-  1033                           
-  1034                           ;initializer for _vetor
-  1035                           	retlw	03Fh
-  1036  079F  343F               	retlw	06h
-  1037  07A0  3406               	retlw	05Bh
-  1038  07A1  345B               	retlw	04Fh
-  1039  07A2  344F               	retlw	066h
-  1040  07A3  3466               	retlw	06Dh
-  1041  07A4  346D               	retlw	07Dh
-  1042  07A5  347D               	retlw	07h
-  1043  07A6  3407               	retlw	07Fh
-  1044  07A7  347F               	retlw	06Fh
-  1045  07A8  346F               	retlw	077h
-  1046  07A9  3477               	retlw	07Ch
-  1047  07AA  347C               	retlw	039h
-  1048  07AB  3439               	retlw	05Eh
-  1049  07AC  345E               	retlw	079h
-  1050  07AD  3479               	retlw	071h
-  1051  07AE  3471               	global	_PORTB
-  1052                           _PORTB	set	0x6
-  1053  0006                     	global	_PORTDbits
-  1054                           _PORTDbits	set	0x8
-  1055  0008                     	global	_TRISB
-  1056                           _TRISB	set	0x86
-  1057  0086                     	global	_TRISDbits
-  1058                           _TRISDbits	set	0x88
-  1059  0088                     	global	_ANSELH
-  1060                           _ANSELH	set	0x189
-  1061  0189                     ; #config settings
-  1062                           global __CFG_FOSC$INTRC_NOCLKOUT
-  1063                           __CFG_FOSC$INTRC_NOCLKOUT equ 0x0
-  1064  0000                     global __CFG_WDTE$OFF
-  1065                           __CFG_WDTE$OFF equ 0x0
-  1066  0000                     global __CFG_PWRTE$OFF
-  1067                           __CFG_PWRTE$OFF equ 0x0
-  1068  0000                     global __CFG_MCLRE$OFF
-  1069                           __CFG_MCLRE$OFF equ 0x0
-  1070  0000                     global __CFG_CP$OFF
-  1071                           __CFG_CP$OFF equ 0x0
-  1072  0000                     global __CFG_CPD$OFF
-  1073                           __CFG_CPD$OFF equ 0x0
-  1074  0000                     global __CFG_BOREN$OFF
-  1075                           __CFG_BOREN$OFF equ 0x0
-  1076  0000                     global __CFG_IESO$OFF
-  1077                           __CFG_IESO$OFF equ 0x0
-  1078  0000                     global __CFG_FCMEN$OFF
-  1079                           __CFG_FCMEN$OFF equ 0x0
-  1080  0000                     global __CFG_LVP$OFF
-  1081                           __CFG_LVP$OFF equ 0x0
-  1082  0000                     global __CFG_BOR4V$BOR40V
-  1083                           __CFG_BOR4V$BOR40V equ 0x0
-  1084  0000                     global __CFG_WRT$OFF
-  1085                           __CFG_WRT$OFF equ 0x0
-  1086  0000                     	file	"C:\Users\21193066\AppData\Local\Temp\s8tg."
-  1087                           	line	#
-  1088                           psect cinit,class=CODE,delta=2
-  1089                           global start_initialization
-  1090                           start_initialization:
-  1091  07EE                     
-  1092                           global __initialization
-  1093                           __initialization:
-  1094  07EE                     psect	dataBANK0,class=BANK0,space=1,noexec
-  1095                           global __pdataBANK0
-  1096                           __pdataBANK0:
-  1097  0020                     	file	"../disp7seg.X/display7seg.c"
-  1098                           	line	11
-  1099                           _vetor:
-  1100  0020                            ds      16
-  1101  0020                     
-  1102                           	file	"C:\Users\21193066\AppData\Local\Temp\s8tg."
-  1103                           	line	#
-  1104                           global btemp
-  1105                           psect inittext,class=CODE,delta=2
-  1106                           global init_fetch0,btemp
-  1107                           ;	Called with low address in FSR and high address in W
-  1108                           init_fetch0:
-  1109  07AF                     	movf btemp,w
-  1110  07AF  087E               	movwf pclath
-  1111  07B0  008A               	movf btemp+1,w
-  1112  07B1  087F               	movwf pc
-  1113  07B2  0082               global init_ram0
-  1114                           ;Called with:
-  1115                           ;	high address of idata address in btemp 
-  1116                           ;	low address of idata address in btemp+1 
-  1117                           ;	low address of data in FSR
-  1118                           ;	high address + 1 of data in btemp-1
-  1119                           init_ram0:
-  1120  07B3                     	fcall init_fetch0
-  1121  07B3  120A  118A  27AF  120A  118A  	movwf indf,f
-  1122  07B8  0080               	incf fsr,f
-  1123  07B9  0A84               	movf fsr,w
-  1124  07BA  0804               	xorwf btemp-1,w
-  1125  07BB  067D               	btfsc status,2
-  1126  07BC  1903               	retlw 0
-  1127  07BD  3400               	incf btemp+1,f
-  1128  07BE  0AFF               	btfsc status,2
-  1129  07BF  1903               	incf btemp,f
-  1130  07C0  0AFE               	goto init_ram0
-  1131  07C1  2FB3               ; Initialize objects allocated to BANK0
-  1132                           psect cinit,class=CODE,delta=2,merge=1
-  1133                           global init_ram0, __pidataBANK0
-  1134                           	bcf	status, 7	;select IRP bank0
-  1135  07EE  1383               	movlw low(__pdataBANK0+16)
-  1136  07EF  3030               	movwf btemp-1,f
-  1137  07F0  00FD               	movlw high(__pidataBANK0)
-  1138  07F1  3007               	movwf btemp,f
-  1139  07F2  00FE               	movlw low(__pidataBANK0)
-  1140  07F3  309F               	movwf btemp+1,f
-  1141  07F4  00FF               	movlw low(__pdataBANK0)
-  1142  07F5  3020               	movwf fsr,f
-  1143  07F6  0084               	fcall init_ram0
-  1144  07F7  120A  118A  27B3  120A  118A  psect cinit,class=CODE,delta=2,merge=1
-  1145                           global end_of_initialization,__end_of__initialization
-  1146                           
-  1147                           ;End of C runtime variable initialization code
-  1148                           
-  1149                           end_of_initialization:
-  1150  07FC                     __end_of__initialization:
-  1151  07FC                     clrf status
-  1152  07FC  0183               ljmp _main	;jump to C main() function
-  1153  07FD  120A  118A  2FC2   psect	cstackCOMMON,class=COMMON,space=1,noexec
-  1154                           global __pcstackCOMMON
-  1155                           __pcstackCOMMON:
-  1156  0070                     ?_botoes_init:	; 1 bytes @ 0x0
-  1157  0070                     ??_botoes_init:	; 1 bytes @ 0x0
-  1158  0070                     ?_contatores_init:	; 1 bytes @ 0x0
-  1159  0070                     ??_contatores_init:	; 1 bytes @ 0x0
-  1160  0070                     ?_display7seg_init:	; 1 bytes @ 0x0
-  1161  0070                     ??_display7seg_init:	; 1 bytes @ 0x0
-  1162  0070                     ?_main:	; 1 bytes @ 0x0
-  1163  0070                     ??_main:	; 1 bytes @ 0x0
-  1164  0070                     	global	main@estado
-  1165                           main@estado:	; 2 bytes @ 0x0
-  1166  0070                     	ds	2
-  1167  0070                     ;!
-  1168                           ;!Data Sizes:
-  1169                           ;!    Strings     0
-  1170                           ;!    Constant    0
-  1171                           ;!    Data        16
-  1172                           ;!    BSS         0
-  1173                           ;!    Persistent  0
-  1174                           ;!    Stack       0
-  1175                           ;!
-  1176                           ;!Auto Spaces:
-  1177                           ;!    Space          Size  Autos    Used
-  1178                           ;!    COMMON           14      2       2
-  1179                           ;!    BANK0            80      0      16
-  1180                           ;!    BANK1            80      0       0
-  1181                           ;!    BANK3            96      0       0
-  1182                           ;!    BANK2            96      0       0
-  1183                           
-  1184                           ;!
-  1185                           ;!Pointer List with Targets:
-  1186                           ;!
-  1187                           ;!    None.
-  1188                           
-  1189                           
-  1190                           ;!
-  1191                           ;!Critical Paths under _main in COMMON
-  1192                           ;!
-  1193                           ;!    None.
-  1194                           ;!
-  1195                           ;!Critical Paths under _main in BANK0
-  1196                           ;!
-  1197                           ;!    None.
-  1198                           ;!
-  1199                           ;!Critical Paths under _main in BANK1
-  1200                           ;!
-  1201                           ;!    None.
-  1202                           ;!
-  1203                           ;!Critical Paths under _main in BANK3
-  1204                           ;!
-  1205                           ;!    None.
-  1206                           ;!
-  1207                           ;!Critical Paths under _main in BANK2
-  1208                           ;!
-  1209                           ;!    None.
-  1210                           
-  1211 ;;
-  1212 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
-  1213 ;;
-  1214                           
+  1023  018D                     	FNCALL	_main,_K1
+  1024                           	FNCALL	_main,_K2
+  1025                           	FNCALL	_main,_K3
+  1026                           	FNCALL	_main,_botoes_init
+  1027                           	FNCALL	_main,_contatores_init
+  1028                           	FNCALL	_main,_delay
+  1029                           	FNCALL	_main,_display7seg
+  1030                           	FNCALL	_main,_display7seg_init
+  1031                           	FNCALL	_main,_s0
+  1032                           	FNCALL	_main,_s1
+  1033                           	FNROOT	_main
+  1034                           	global	_vetor
+  1035                           psect	idataBANK0,class=CODE,space=0,delta=2,noexec
+  1036                           global __pidataBANK0
+  1037                           __pidataBANK0:
+  1038  0676                     	file	"../disp7seg.X/display7seg.c"
+  1039                           	line	11
+  1040                           
+  1041                           ;initializer for _vetor
+  1042                           	retlw	03Fh
+  1043  0676  343F               	retlw	06h
+  1044  0677  3406               	retlw	05Bh
+  1045  0678  345B               	retlw	04Fh
+  1046  0679  344F               	retlw	066h
+  1047  067A  3466               	retlw	06Dh
+  1048  067B  346D               	retlw	07Dh
+  1049  067C  347D               	retlw	07h
+  1050  067D  3407               	retlw	07Fh
+  1051  067E  347F               	retlw	06Fh
+  1052  067F  346F               	retlw	077h
+  1053  0680  3477               	retlw	07Ch
+  1054  0681  347C               	retlw	039h
+  1055  0682  3439               	retlw	05Eh
+  1056  0683  345E               	retlw	079h
+  1057  0684  3479               	retlw	071h
+  1058  0685  3471               	global	_PORTB
+  1059                           _PORTB	set	0x6
+  1060  0006                     	global	_PORTDbits
+  1061                           _PORTDbits	set	0x8
+  1062  0008                     	global	_TRISB
+  1063                           _TRISB	set	0x86
+  1064  0086                     	global	_TRISDbits
+  1065                           _TRISDbits	set	0x88
+  1066  0088                     	global	_ANSELH
+  1067                           _ANSELH	set	0x189
+  1068  0189                     ; #config settings
+  1069                           global __CFG_FOSC$INTRC_NOCLKOUT
+  1070                           __CFG_FOSC$INTRC_NOCLKOUT equ 0x0
+  1071  0000                     global __CFG_WDTE$OFF
+  1072                           __CFG_WDTE$OFF equ 0x0
+  1073  0000                     global __CFG_PWRTE$OFF
+  1074                           __CFG_PWRTE$OFF equ 0x0
+  1075  0000                     global __CFG_MCLRE$OFF
+  1076                           __CFG_MCLRE$OFF equ 0x0
+  1077  0000                     global __CFG_CP$OFF
+  1078                           __CFG_CP$OFF equ 0x0
+  1079  0000                     global __CFG_CPD$OFF
+  1080                           __CFG_CPD$OFF equ 0x0
+  1081  0000                     global __CFG_BOREN$OFF
+  1082                           __CFG_BOREN$OFF equ 0x0
+  1083  0000                     global __CFG_IESO$OFF
+  1084                           __CFG_IESO$OFF equ 0x0
+  1085  0000                     global __CFG_FCMEN$OFF
+  1086                           __CFG_FCMEN$OFF equ 0x0
+  1087  0000                     global __CFG_LVP$OFF
+  1088                           __CFG_LVP$OFF equ 0x0
+  1089  0000                     global __CFG_BOR4V$BOR40V
+  1090                           __CFG_BOR4V$BOR40V equ 0x0
+  1091  0000                     global __CFG_WRT$OFF
+  1092                           __CFG_WRT$OFF equ 0x0
+  1093  0000                     	file	"C:\Users\21193066\AppData\Local\Temp\s1bo."
+  1094                           	line	#
+  1095                           psect cinit,class=CODE,delta=2
+  1096                           global start_initialization
+  1097                           start_initialization:
+  1098  07EE                     
+  1099                           global __initialization
+  1100                           __initialization:
+  1101  07EE                     psect	dataBANK0,class=BANK0,space=1,noexec
+  1102                           global __pdataBANK0
+  1103                           __pdataBANK0:
+  1104  0020                     	file	"../disp7seg.X/display7seg.c"
+  1105                           	line	11
+  1106                           _vetor:
+  1107  0020                            ds      16
+  1108  0020                     
+  1109                           	file	"C:\Users\21193066\AppData\Local\Temp\s1bo."
+  1110                           	line	#
+  1111                           global btemp
+  1112                           psect inittext,class=CODE,delta=2
+  1113                           global init_fetch0,btemp
+  1114                           ;	Called with low address in FSR and high address in W
+  1115                           init_fetch0:
+  1116  0686                     	movf btemp,w
+  1117  0686  087E               	movwf pclath
+  1118  0687  008A               	movf btemp+1,w
+  1119  0688  087F               	movwf pc
+  1120  0689  0082               global init_ram0
+  1121                           ;Called with:
+  1122                           ;	high address of idata address in btemp 
+  1123                           ;	low address of idata address in btemp+1 
+  1124                           ;	low address of data in FSR
+  1125                           ;	high address + 1 of data in btemp-1
+  1126                           init_ram0:
+  1127  068A                     	fcall init_fetch0
+  1128  068A  120A  118A  2686  120A  118A  	movwf indf,f
+  1129  068F  0080               	incf fsr,f
+  1130  0690  0A84               	movf fsr,w
+  1131  0691  0804               	xorwf btemp-1,w
+  1132  0692  067D               	btfsc status,2
+  1133  0693  1903               	retlw 0
+  1134  0694  3400               	incf btemp+1,f
+  1135  0695  0AFF               	btfsc status,2
+  1136  0696  1903               	incf btemp,f
+  1137  0697  0AFE               	goto init_ram0
+  1138  0698  2E8A               ; Initialize objects allocated to BANK0
+  1139                           psect cinit,class=CODE,delta=2,merge=1
+  1140                           global init_ram0, __pidataBANK0
+  1141                           	bcf	status, 7	;select IRP bank0
+  1142  07EE  1383               	movlw low(__pdataBANK0+16)
+  1143  07EF  3030               	movwf btemp-1,f
+  1144  07F0  00FD               	movlw high(__pidataBANK0)
+  1145  07F1  3006               	movwf btemp,f
+  1146  07F2  00FE               	movlw low(__pidataBANK0)
+  1147  07F3  3076               	movwf btemp+1,f
+  1148  07F4  00FF               	movlw low(__pdataBANK0)
+  1149  07F5  3020               	movwf fsr,f
+  1150  07F6  0084               	fcall init_ram0
+  1151  07F7  120A  118A  268A  120A  118A  psect cinit,class=CODE,delta=2,merge=1
+  1152                           global end_of_initialization,__end_of__initialization
+  1153                           
+  1154                           ;End of C runtime variable initialization code
+  1155                           
+  1156                           end_of_initialization:
+  1157  07FC                     __end_of__initialization:
+  1158  07FC                     clrf status
+  1159  07FC  0183               ljmp _main	;jump to C main() function
+  1160  07FD  120A  118A  2ECF   psect	cstackCOMMON,class=COMMON,space=1,noexec
+  1161                           global __pcstackCOMMON
+  1162                           __pcstackCOMMON:
+  1163  0070                     ?_display7seg_init:	; 1 bytes @ 0x0
+  1164  0070                     ??_display7seg_init:	; 1 bytes @ 0x0
+  1165  0070                     ?_botoes_init:	; 1 bytes @ 0x0
+  1166  0070                     ??_botoes_init:	; 1 bytes @ 0x0
+  1167  0070                     ?_contatores_init:	; 1 bytes @ 0x0
+  1168  0070                     ??_contatores_init:	; 1 bytes @ 0x0
+  1169  0070                     ?_s1:	; 1 bytes @ 0x0
+  1170  0070                     ??_s1:	; 1 bytes @ 0x0
+  1171  0070                     ?_K1:	; 1 bytes @ 0x0
+  1172  0070                     ?_K2:	; 1 bytes @ 0x0
+  1173  0070                     ?_K3:	; 1 bytes @ 0x0
+  1174  0070                     ?_s0:	; 1 bytes @ 0x0
+  1175  0070                     ??_s0:	; 1 bytes @ 0x0
+  1176  0070                     ?_delay:	; 1 bytes @ 0x0
+  1177  0070                     ?_display7seg:	; 1 bytes @ 0x0
+  1178  0070                     ?_main:	; 1 bytes @ 0x0
+  1179  0070                     	global	delay@t
+  1180                           delay@t:	; 2 bytes @ 0x0
+  1181  0070                     	global	display7seg@c
+  1182                           display7seg@c:	; 2 bytes @ 0x0
+  1183  0070                     	global	K1@x
+  1184                           K1@x:	; 2 bytes @ 0x0
+  1185  0070                     	global	K2@x
+  1186                           K2@x:	; 2 bytes @ 0x0
+  1187  0070                     	global	K3@x
+  1188                           K3@x:	; 2 bytes @ 0x0
+  1189  0070                     	ds	2
+  1190  0070                     ??_K1:	; 1 bytes @ 0x2
+  1191  0072                     ??_K2:	; 1 bytes @ 0x2
+  1192  0072                     ??_K3:	; 1 bytes @ 0x2
+  1193  0072                     ??_delay:	; 1 bytes @ 0x2
+  1194  0072                     ??_display7seg:	; 1 bytes @ 0x2
+  1195  0072                     	ds	1
+  1196  0072                     ??_main:	; 1 bytes @ 0x3
+  1197  0073                     	ds	2
+  1198  0073                     	global	main@t
+  1199                           main@t:	; 2 bytes @ 0x5
+  1200  0075                     	ds	2
+  1201  0075                     	global	main@cont
+  1202                           main@cont:	; 1 bytes @ 0x7
+  1203  0077                     	ds	1
+  1204  0077                     	global	main@estado
+  1205                           main@estado:	; 2 bytes @ 0x8
+  1206  0078                     	ds	2
+  1207  0078                     ;!
+  1208                           ;!Data Sizes:
+  1209                           ;!    Strings     0
+  1210                           ;!    Constant    0
+  1211                           ;!    Data        16
+  1212                           ;!    BSS         0
+  1213                           ;!    Persistent  0
+  1214                           ;!    Stack       0
   1215                           ;!
-  1216                           ;!Call Graph Tables:
-  1217                           ;!
-  1218                           ;! ---------------------------------------------------------------------------------
-  1219                           ;! (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
-  1220                           ;! ---------------------------------------------------------------------------------
-  1221                           ;! (0) _main                                                 4     4      0      15
-  1222                           ;!                                              0 COMMON     2     2      0
-  1223                           ;!                        _botoes_init
-  1224                           ;!                    _contatores_init
-  1225                           ;!                   _display7seg_init
-  1226                           ;! ---------------------------------------------------------------------------------
-  1227                           ;! (1) _display7seg_init                                     0     0      0       0
-  1228                           ;! ---------------------------------------------------------------------------------
-  1229                           ;! (1) _contatores_init                                      0     0      0       0
-  1230                           ;! ---------------------------------------------------------------------------------
-  1231                           ;! (1) _botoes_init                                          0     0      0       0
-  1232                           ;! ---------------------------------------------------------------------------------
-  1233                           ;! Estimated maximum stack depth 1
-  1234                           ;! ---------------------------------------------------------------------------------
-  1235                           ;!
-  1236                           ;! Call Graph Graphs:
-  1237                           ;!
-  1238                           ;! _main (ROOT)
-  1239                           ;!   _botoes_init
-  1240                           ;!   _contatores_init
-  1241                           ;!   _display7seg_init
+  1216                           ;!Auto Spaces:
+  1217                           ;!    Space          Size  Autos    Used
+  1218                           ;!    COMMON           14     10      10
+  1219                           ;!    BANK0            80      0      16
+  1220                           ;!    BANK1            80      0       0
+  1221                           ;!    BANK3            96      0       0
+  1222                           ;!    BANK2            96      0       0
+  1223                           
+  1224                           ;!
+  1225                           ;!Pointer List with Targets:
+  1226                           ;!
+  1227                           ;!    None.
+  1228                           
+  1229                           
+  1230                           ;!
+  1231                           ;!Critical Paths under _main in COMMON
+  1232                           ;!
+  1233                           ;!    _main->_delay
+  1234                           ;!
+  1235                           ;!Critical Paths under _main in BANK0
+  1236                           ;!
+  1237                           ;!    None.
+  1238                           ;!
+  1239                           ;!Critical Paths under _main in BANK1
+  1240                           ;!
+  1241                           ;!    None.
   1242                           ;!
-  1243                           
-  1244                           ;! Address spaces:
-  1245                           
-  1246                           ;!Name               Size   Autos  Total    Cost      Usage
-  1247                           ;!BANK3               60      0       0       9        0.0%
-  1248                           ;!BITBANK3            60      0       0       8        0.0%
-  1249                           ;!SFR3                 0      0       0       4        0.0%
-  1250                           ;!BITSFR3              0      0       0       4        0.0%
-  1251                           ;!BANK2               60      0       0      11        0.0%
-  1252                           ;!BITBANK2            60      0       0      10        0.0%
-  1253                           ;!SFR2                 0      0       0       5        0.0%
-  1254                           ;!BITSFR2              0      0       0       5        0.0%
-  1255                           ;!BANK1               50      0       0       7        0.0%
-  1256                           ;!BITBANK1            50      0       0       6        0.0%
-  1257                           ;!SFR1                 0      0       0       2        0.0%
-  1258                           ;!BITSFR1              0      0       0       2        0.0%
-  1259                           ;!BANK0               50      0      10       5       20.0%
-  1260                           ;!BITBANK0            50      0       0       4        0.0%
-  1261                           ;!SFR0                 0      0       0       1        0.0%
-  1262                           ;!BITSFR0              0      0       0       1        0.0%
-  1263                           ;!COMMON               E      2       2       1       14.3%
-  1264                           ;!BITCOMMON            E      0       0       0        0.0%
-  1265                           ;!CODE                 0      0       0       0        0.0%
-  1266                           ;!DATA                 0      0      12      12        0.0%
-  1267                           ;!ABS                  0      0      12       3        0.0%
-  1268                           ;!NULL                 0      0       0       0        0.0%
-  1269                           ;!STACK                0      0       0       2        0.0%
-  1270                           ;!EEDATA             100      0       0       0        0.0%
-  1271                           
-  1272                           	global	_main
-  1273                           
-  1274 ;; *************** function _main *****************
-  1275 ;; Defined at:
-  1276 ;;		line 16 in file "main.c"
-  1277 ;; Parameters:    Size  Location     Type
-  1278 ;;		None
-  1279 ;; Auto vars:     Size  Location     Type
-  1280 ;;  estado          2    0[COMMON] int 
-  1281 ;;  t               2    0        int 
-  1282 ;; Return value:  Size  Location     Type
-  1283 ;;                  1    wreg      void 
-  1284 ;; Registers used:
-  1285 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
-  1286 ;; Tracked objects:
-  1287 ;;		On entry : B00/0
-  1288 ;;		On exit  : 0/0
-  1289 ;;		Unchanged: 0/0
-  1290 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-  1291 ;;      Params:         0       0       0       0       0
-  1292 ;;      Locals:         2       0       0       0       0
-  1293 ;;      Temps:          0       0       0       0       0
-  1294 ;;      Totals:         2       0       0       0       0
-  1295 ;;Total ram usage:        2 bytes
-  1296 ;; Hardware stack levels required when called:    1
-  1297 ;; This function calls:
-  1298 ;;		_botoes_init
-  1299 ;;		_contatores_init
-  1300 ;;		_display7seg_init
-  1301 ;; This function is called by:
-  1302 ;;		Startup code after reset
-  1303 ;; This function uses a non-reentrant model
-  1304 ;;
-  1305                           psect	maintext,global,class=CODE,delta=2,split=1,group=0
-  1306                           	file	"main.c"
-  1307                           	line	16
-  1308                           global __pmaintext
-  1309                           __pmaintext:	;psect for function _main
-  1310  07C2                     psect	maintext
-  1311                           	file	"main.c"
-  1312                           	line	16
-  1313                           	global	__size_of_main
-  1314                           	__size_of_main	equ	__end_of_main-_main
-  1315  002C                     	
-  1316                           _main:	
-  1317  07C2                     ;incstack = 0
-  1318                           	opt	stack 7
-  1319                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
-  1320                           	line	18
-  1321                           	
-  1322                           l650:	
-  1323  07C2                     ;main.c: 18:     int estado = 0;
-  1324                           	clrf	(main@estado)
-  1325  07C2  01F0               	clrf	(main@estado+1)
-  1326  07C3  01F1               	goto	l658
-  1327  07C4  2FDC               	line	20
-  1328                           ;main.c: 19:     int t;;main.c: 20:     while ( 1 )
-  1329                           	
-  1330                           l11:	
-  1331  07C5                     	line	22
-  1332                           ;main.c: 21:     {;main.c: 22:        switch (estado)
-  1333                           	goto	l658
-  1334  07C5  2FDC               	line	24
-  1335                           ;main.c: 23:        {;main.c: 24:            case 0:
-  1336                           	
-  1337                           l13:	
-  1338  07C6                     	line	25
-  1339                           	
-  1340                           l652:	
-  1341  07C6                     ;main.c: 25:                    botoes_init();
-  1342                           	fcall	_botoes_init
-  1343  07C6  120A  118A  2785  120A  118A  	line	26
-  1344                           ;main.c: 26:                    contatores_init();
-  1345                           	fcall	_contatores_init
-  1346  07CB  120A  118A  2794  120A  118A  	line	27
-  1347                           ;main.c: 27:                    display7seg_init();
-  1348                           	fcall	_display7seg_init
-  1349  07D0  120A  118A  278A  120A  118A  	line	28
-  1350                           	
-  1351                           l654:	
-  1352  07D5                     ;main.c: 28:                    estado =1;
-  1353                           	movlw	01h
-  1354  07D5  3001               	movwf	(main@estado)
-  1355  07D6  00F0               	movlw	0
-  1356  07D7  3000               	movwf	((main@estado))+1
-  1357  07D8  00F1               	line	29
-  1358                           ;main.c: 29:                    break;
-  1359                           	goto	l658
-  1360  07D9  2FDC               	line	30
-  1361                           ;main.c: 30:            case 1:
-  1362                           	
-  1363                           l15:	
-  1364  07DA                     	line	32
-  1365                           ;main.c: 32:                    break;
-  1366                           	goto	l658
-  1367  07DA  2FDC               	line	33
-  1368                           	
-  1369                           l656:	
-  1370  07DB                     ;main.c: 33:        }
-  1371                           	goto	l658
-  1372  07DB  2FDC               	
-  1373                           l12:	
-  1374  07DC                     	
-  1375                           l658:	
-  1376  07DC                     	; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-s
-                                 witches
-  1377                           ; Switch size 1, requested type "space"
-  1378                           ; Number of cases is 1, Range of values is 0 to 0
-  1379                           ; switch strategies available:
-  1380                           ; Name         Instructions Cycles
-  1381                           ; simple_byte            4     3 (average)
-  1382                           ; direct_byte           11     8 (fixed)
-  1383                           ; jumptable            260     6 (fixed)
-  1384                           ;	Chosen strategy is simple_byte
-  1385                           
-  1386                           	movf (main@estado+1),w
-  1387  07DC  0871               	opt asmopt_push
-  1388                           	opt asmopt_off
-  1389                           	xorlw	0^0	; case 0
-  1390  07DD  3A00               	skipnz
-  1391  07DE  1903               	goto	l724
-  1392  07DF  2FE1               	goto	l658
-  1393  07E0  2FDC               	opt asmopt_pop
-  1394                           	
-  1395                           l724:	
-  1396  07E1                     ; Switch size 1, requested type "space"
-  1397                           ; Number of cases is 2, Range of values is 0 to 1
-  1398                           ; switch strategies available:
-  1399                           ; Name         Instructions Cycles
-  1400                           ; simple_byte            7     4 (average)
-  1401                           ; direct_byte           14     8 (fixed)
-  1402                           ; jumptable            260     6 (fixed)
-  1403                           ;	Chosen strategy is simple_byte
-  1404                           
-  1405                           	movf (main@estado),w
-  1406  07E1  0870               	opt asmopt_push
-  1407                           	opt asmopt_off
-  1408                           	xorlw	0^0	; case 0
-  1409  07E2  3A00               	skipnz
-  1410  07E3  1903               	goto	l652
-  1411  07E4  2FC6               	xorlw	1^0	; case 1
-  1412  07E5  3A01               	skipnz
-  1413  07E6  1903               	goto	l658
-  1414  07E7  2FDC               	goto	l658
-  1415  07E8  2FDC               	opt asmopt_pop
-  1416                           
-  1417                           	
-  1418                           l14:	
-  1419  07E9                     	goto	l658
-  1420  07E9  2FDC               	line	34
-  1421                           ;main.c: 34:     }
+  1243                           ;!Critical Paths under _main in BANK3
+  1244                           ;!
+  1245                           ;!    None.
+  1246                           ;!
+  1247                           ;!Critical Paths under _main in BANK2
+  1248                           ;!
+  1249                           ;!    None.
+  1250                           
+  1251 ;;
+  1252 ;;Main: autosize = 0, tempsize = 2, incstack = 0, save=0
+  1253 ;;
+  1254                           
+  1255                           ;!
+  1256                           ;!Call Graph Tables:
+  1257                           ;!
+  1258                           ;! ---------------------------------------------------------------------------------
+  1259                           ;! (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+  1260                           ;! ---------------------------------------------------------------------------------
+  1261                           ;! (0) _main                                                 7     7      0    1320
+  1262                           ;!                                              3 COMMON     7     7      0
+  1263                           ;!                                 _K1
+  1264                           ;!                                 _K2
+  1265                           ;!                                 _K3
+  1266                           ;!                        _botoes_init
+  1267                           ;!                    _contatores_init
+  1268                           ;!                              _delay
+  1269                           ;!                        _display7seg
+  1270                           ;!                   _display7seg_init
+  1271                           ;!                                 _s0
+  1272                           ;!                                 _s1
+  1273                           ;! ---------------------------------------------------------------------------------
+  1274                           ;! (1) _s1                                                   0     0      0       0
+  1275                           ;! ---------------------------------------------------------------------------------
+  1276                           ;! (1) _s0                                                   0     0      0       0
+  1277                           ;! ---------------------------------------------------------------------------------
+  1278                           ;! (1) _display7seg_init                                     0     0      0       0
+  1279                           ;! ---------------------------------------------------------------------------------
+  1280                           ;! (1) _display7seg                                          2     0      2     142
+  1281                           ;!                                              0 COMMON     2     0      2
+  1282                           ;! ---------------------------------------------------------------------------------
+  1283                           ;! (1) _delay                                                3     1      2      99
+  1284                           ;!                                              0 COMMON     3     1      2
+  1285                           ;! ---------------------------------------------------------------------------------
+  1286                           ;! (1) _contatores_init                                      0     0      0       0
+  1287                           ;! ---------------------------------------------------------------------------------
+  1288                           ;! (1) _botoes_init                                          0     0      0       0
+  1289                           ;! ---------------------------------------------------------------------------------
+  1290                           ;! (1) _K3                                                   2     0      2     326
+  1291                           ;!                                              0 COMMON     2     0      2
+  1292                           ;! ---------------------------------------------------------------------------------
+  1293                           ;! (1) _K2                                                   2     0      2     326
+  1294                           ;!                                              0 COMMON     2     0      2
+  1295                           ;! ---------------------------------------------------------------------------------
+  1296                           ;! (1) _K1                                                   2     0      2     326
+  1297                           ;!                                              0 COMMON     2     0      2
+  1298                           ;! ---------------------------------------------------------------------------------
+  1299                           ;! Estimated maximum stack depth 1
+  1300                           ;! ---------------------------------------------------------------------------------
+  1301                           ;!
+  1302                           ;! Call Graph Graphs:
+  1303                           ;!
+  1304                           ;! _main (ROOT)
+  1305                           ;!   _K1
+  1306                           ;!   _K2
+  1307                           ;!   _K3
+  1308                           ;!   _botoes_init
+  1309                           ;!   _contatores_init
+  1310                           ;!   _delay
+  1311                           ;!   _display7seg
+  1312                           ;!   _display7seg_init
+  1313                           ;!   _s0
+  1314                           ;!   _s1
+  1315                           ;!
+  1316                           
+  1317                           ;! Address spaces:
+  1318                           
+  1319                           ;!Name               Size   Autos  Total    Cost      Usage
+  1320                           ;!BANK3               60      0       0       9        0.0%
+  1321                           ;!BITBANK3            60      0       0       8        0.0%
+  1322                           ;!SFR3                 0      0       0       4        0.0%
+  1323                           ;!BITSFR3              0      0       0       4        0.0%
+  1324                           ;!BANK2               60      0       0      11        0.0%
+  1325                           ;!BITBANK2            60      0       0      10        0.0%
+  1326                           ;!SFR2                 0      0       0       5        0.0%
+  1327                           ;!BITSFR2              0      0       0       5        0.0%
+  1328                           ;!BANK1               50      0       0       7        0.0%
+  1329                           ;!BITBANK1            50      0       0       6        0.0%
+  1330                           ;!SFR1                 0      0       0       2        0.0%
+  1331                           ;!BITSFR1              0      0       0       2        0.0%
+  1332                           ;!BANK0               50      0      10       5       20.0%
+  1333                           ;!BITBANK0            50      0       0       4        0.0%
+  1334                           ;!SFR0                 0      0       0       1        0.0%
+  1335                           ;!BITSFR0              0      0       0       1        0.0%
+  1336                           ;!COMMON               E      A       A       1       71.4%
+  1337                           ;!BITCOMMON            E      0       0       0        0.0%
+  1338                           ;!CODE                 0      0       0       0        0.0%
+  1339                           ;!DATA                 0      0      1A      12        0.0%
+  1340                           ;!ABS                  0      0      1A       3        0.0%
+  1341                           ;!NULL                 0      0       0       0        0.0%
+  1342                           ;!STACK                0      0       0       2        0.0%
+  1343                           ;!EEDATA             100      0       0       0        0.0%
+  1344                           
+  1345                           	global	_main
+  1346                           
+  1347 ;; *************** function _main *****************
+  1348 ;; Defined at:
+  1349 ;;		line 16 in file "main.c"
+  1350 ;; Parameters:    Size  Location     Type
+  1351 ;;		None
+  1352 ;; Auto vars:     Size  Location     Type
+  1353 ;;  estado          2    8[COMMON] int 
+  1354 ;;  t               2    5[COMMON] int 
+  1355 ;;  cont            1    7[COMMON] unsigned char 
+  1356 ;; Return value:  Size  Location     Type
+  1357 ;;                  1    wreg      void 
+  1358 ;; Registers used:
+  1359 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+  1360 ;; Tracked objects:
+  1361 ;;		On entry : B00/0
+  1362 ;;		On exit  : 0/0
+  1363 ;;		Unchanged: 0/0
+  1364 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1365 ;;      Params:         0       0       0       0       0
+  1366 ;;      Locals:         5       0       0       0       0
+  1367 ;;      Temps:          2       0       0       0       0
+  1368 ;;      Totals:         7       0       0       0       0
+  1369 ;;Total ram usage:        7 bytes
+  1370 ;; Hardware stack levels required when called:    1
+  1371 ;; This function calls:
+  1372 ;;		_K1
+  1373 ;;		_K2
+  1374 ;;		_K3
+  1375 ;;		_botoes_init
+  1376 ;;		_contatores_init
+  1377 ;;		_delay
+  1378 ;;		_display7seg
+  1379 ;;		_display7seg_init
+  1380 ;;		_s0
+  1381 ;;		_s1
+  1382 ;; This function is called by:
+  1383 ;;		Startup code after reset
+  1384 ;; This function uses a non-reentrant model
+  1385 ;;
+  1386                           psect	maintext,global,class=CODE,delta=2,split=1,group=0
+  1387                           	file	"main.c"
+  1388                           	line	16
+  1389                           global __pmaintext
+  1390                           __pmaintext:	;psect for function _main
+  1391  06CF                     psect	maintext
+  1392                           	file	"main.c"
+  1393                           	line	16
+  1394                           	global	__size_of_main
+  1395                           	__size_of_main	equ	__end_of_main-_main
+  1396  011F                     	
+  1397                           _main:	
+  1398  06CF                     ;incstack = 0
+  1399                           	opt	stack 7
+  1400                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+  1401                           	line	19
+  1402                           	
+  1403                           l798:	
+  1404  06CF                     ;main.c: 18:     char cont;;main.c: 19:     display7seg_init();
+  1405                           	fcall	_display7seg_init
+  1406  06CF  120A  118A  2661  120A  118A  	line	20
+  1407                           	
+  1408                           l800:	
+  1409  06D4                     ;main.c: 20:     int estado = 0;
+  1410                           	clrf	(main@estado)
+  1411  06D4  01F8               	clrf	(main@estado+1)
+  1412  06D5  01F9               	goto	l842
+  1413  06D6  2FB9               	line	22
+  1414                           ;main.c: 21:     int t;;main.c: 22:     while ( 1 )
+  1415                           	
+  1416                           l25:	
+  1417  06D7                     	line	24
+  1418                           ;main.c: 23:     {;main.c: 24:        switch (estado)
+  1419                           	goto	l842
+  1420  06D7  2FB9               	line	26
+  1421                           ;main.c: 25:        {;main.c: 26:            case 0:
   1422                           	
-  1423                           l16:	
-  1424  07EA                     	goto	l658
-  1425  07EA  2FDC               	
-  1426                           l17:	
-  1427  07EB                     	line	35
-  1428                           	
-  1429                           l18:	
-  1430  07EB                     	global	start
-  1431                           	ljmp	start
-  1432  07EB  120A  118A  2800   	opt stack 0
-  1433                           GLOBAL	__end_of_main
-  1434                           	__end_of_main:
-  1435  07EE                     	signat	_main,89
-  1436                           	global	_display7seg_init
-  1437                           
-  1438 ;; *************** function _display7seg_init *****************
-  1439 ;; Defined at:
-  1440 ;;		line 17 in file "../disp7seg.X/display7seg.c"
-  1441 ;; Parameters:    Size  Location     Type
-  1442 ;;		None
-  1443 ;; Auto vars:     Size  Location     Type
-  1444 ;;		None
-  1445 ;; Return value:  Size  Location     Type
-  1446 ;;                  1    wreg      void 
-  1447 ;; Registers used:
-  1448 ;;		status,2
-  1449 ;; Tracked objects:
-  1450 ;;		On entry : 0/0
-  1451 ;;		On exit  : 0/0
-  1452 ;;		Unchanged: 0/0
-  1453 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-  1454 ;;      Params:         0       0       0       0       0
-  1455 ;;      Locals:         0       0       0       0       0
-  1456 ;;      Temps:          0       0       0       0       0
-  1457 ;;      Totals:         0       0       0       0       0
-  1458 ;;Total ram usage:        0 bytes
-  1459 ;; Hardware stack levels used:    1
-  1460 ;; This function calls:
-  1461 ;;		Nothing
-  1462 ;; This function is called by:
-  1463 ;;		_main
-  1464 ;; This function uses a non-reentrant model
-  1465 ;;
-  1466                           psect	text1,local,class=CODE,delta=2,merge=1,group=0
-  1467                           	file	"../disp7seg.X/display7seg.c"
-  1468                           	line	17
-  1469                           global __ptext1
-  1470                           __ptext1:	;psect for function _display7seg_init
-  1471  078A                     psect	text1
-  1472                           	file	"../disp7seg.X/display7seg.c"
-  1473                           	line	17
-  1474                           	global	__size_of_display7seg_init
-  1475                           	__size_of_display7seg_init	equ	__end_of_display7seg_init-_display7seg_init
-  1476  000A                     	
-  1477                           _display7seg_init:	
-  1478  078A                     ;incstack = 0
-  1479                           	opt	stack 7
-  1480                           ; Regs used in _display7seg_init: [status,2]
-  1481                           	line	19
-  1482                           	
-  1483                           l648:	
-  1484  078A                     ;../disp7seg.X/display7seg.c: 19:     ANSELH = 0;
-  1485                           	bsf	status, 5	;RP0=1, select bank3
-  1486  078A  1683               	bsf	status, 6	;RP1=1, select bank3
-  1487  078B  1703               	clrf	(393)^0180h	;volatile
-  1488  078C  0189               	line	20
-  1489                           ;../disp7seg.X/display7seg.c: 20:     TRISB =0x00;
-  1490                           	bsf	status, 5	;RP0=1, select bank1
-  1491  078D  1683               	bcf	status, 6	;RP1=0, select bank1
-  1492  078E  1303               	clrf	(134)^080h	;volatile
-  1493  078F  0186               	line	21
-  1494                           ;../disp7seg.X/display7seg.c: 21:     PORTB =0x00;
-  1495                           	bcf	status, 5	;RP0=0, select bank0
-  1496  0790  1283               	bcf	status, 6	;RP1=0, select bank0
-  1497  0791  1303               	clrf	(6)	;volatile
-  1498  0792  0186               	line	22
-  1499                           	
-  1500                           l50:	
-  1501  0793                     	return
-  1502  0793  0008               	opt stack 0
-  1503                           GLOBAL	__end_of_display7seg_init
-  1504                           	__end_of_display7seg_init:
-  1505  0794                     	signat	_display7seg_init,89
-  1506                           	global	_contatores_init
-  1507                           
-  1508 ;; *************** function _contatores_init *****************
-  1509 ;; Defined at:
-  1510 ;;		line 12 in file "../partidaEstrelaTriangulo.X/contatores.c"
-  1511 ;; Parameters:    Size  Location     Type
-  1512 ;;		None
-  1513 ;; Auto vars:     Size  Location     Type
-  1514 ;;		None
-  1515 ;; Return value:  Size  Location     Type
-  1516 ;;                  1    wreg      void 
-  1517 ;; Registers used:
-  1518 ;;		None
-  1519 ;; Tracked objects:
-  1520 ;;		On entry : 0/0
-  1521 ;;		On exit  : 0/0
-  1522 ;;		Unchanged: 0/0
-  1523 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-  1524 ;;      Params:         0       0       0       0       0
-  1525 ;;      Locals:         0       0       0       0       0
-  1526 ;;      Temps:          0       0       0       0       0
-  1527 ;;      Totals:         0       0       0       0       0
-  1528 ;;Total ram usage:        0 bytes
-  1529 ;; Hardware stack levels used:    1
-  1530 ;; This function calls:
-  1531 ;;		Nothing
-  1532 ;; This function is called by:
-  1533 ;;		_main
-  1534 ;; This function uses a non-reentrant model
-  1535 ;;
-  1536                           psect	text2,local,class=CODE,delta=2,merge=1,group=0
-  1537                           	file	"../partidaEstrelaTriangulo.X/contatores.c"
-  1538                           	line	12
-  1539                           global __ptext2
-  1540                           __ptext2:	;psect for function _contatores_init
-  1541  0794                     psect	text2
-  1542                           	file	"../partidaEstrelaTriangulo.X/contatores.c"
-  1543                           	line	12
-  1544                           	global	__size_of_contatores_init
-  1545                           	__size_of_contatores_init	equ	__end_of_contatores_init-_contatores_init
-  1546  000B                     	
-  1547                           _contatores_init:	
-  1548  0794                     ;incstack = 0
-  1549                           	opt	stack 7
-  1550                           ; Regs used in _contatores_init: []
-  1551                           	line	14
-  1552                           	
-  1553                           l646:	
-  1554  0794                     ;../partidaEstrelaTriangulo.X/contatores.c: 14:     TRISDbits.TRISD5 = 0;
-  1555                           	bsf	status, 5	;RP0=1, select bank1
-  1556  0794  1683               	bcf	status, 6	;RP1=0, select bank1
-  1557  0795  1303               	bcf	(136)^080h,5	;volatile
-  1558  0796  1288               	line	15
-  1559                           ;../partidaEstrelaTriangulo.X/contatores.c: 15:     TRISDbits.TRISD6 = 0;
-  1560                           	bcf	(136)^080h,6	;volatile
-  1561  0797  1308               	line	16
-  1562                           ;../partidaEstrelaTriangulo.X/contatores.c: 16:     TRISDbits.TRISD7 = 0;
-  1563                           	bcf	(136)^080h,7	;volatile
-  1564  0798  1388               	line	17
-  1565                           ;../partidaEstrelaTriangulo.X/contatores.c: 17:     PORTDbits.RD5 = 0;
-  1566                           	bcf	status, 5	;RP0=0, select bank0
-  1567  0799  1283               	bcf	status, 6	;RP1=0, select bank0
-  1568  079A  1303               	bcf	(8),5	;volatile
-  1569  079B  1288               	line	18
-  1570                           ;../partidaEstrelaTriangulo.X/contatores.c: 18:     PORTDbits.RD6 = 0;
-  1571                           	bcf	(8),6	;volatile
-  1572  079C  1308               	line	19
-  1573                           ;../partidaEstrelaTriangulo.X/contatores.c: 19:     PORTDbits.RD7 = 0;
-  1574                           	bcf	(8),7	;volatile
-  1575  079D  1388               	line	20
-  1576                           	
-  1577                           l62:	
-  1578  079E                     	return
-  1579  079E  0008               	opt stack 0
-  1580                           GLOBAL	__end_of_contatores_init
-  1581                           	__end_of_contatores_init:
-  1582  079F                     	signat	_contatores_init,89
-  1583                           	global	_botoes_init
-  1584                           
-  1585 ;; *************** function _botoes_init *****************
-  1586 ;; Defined at:
-  1587 ;;		line 12 in file "../disp7seg.X/botoes.c"
-  1588 ;; Parameters:    Size  Location     Type
-  1589 ;;		None
-  1590 ;; Auto vars:     Size  Location     Type
-  1591 ;;		None
-  1592 ;; Return value:  Size  Location     Type
-  1593 ;;                  1    wreg      void 
-  1594 ;; Registers used:
-  1595 ;;		None
-  1596 ;; Tracked objects:
-  1597 ;;		On entry : 0/0
-  1598 ;;		On exit  : 0/0
-  1599 ;;		Unchanged: 0/0
-  1600 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-  1601 ;;      Params:         0       0       0       0       0
-  1602 ;;      Locals:         0       0       0       0       0
-  1603 ;;      Temps:          0       0       0       0       0
-  1604 ;;      Totals:         0       0       0       0       0
-  1605 ;;Total ram usage:        0 bytes
-  1606 ;; Hardware stack levels used:    1
-  1607 ;; This function calls:
-  1608 ;;		Nothing
-  1609 ;; This function is called by:
-  1610 ;;		_main
-  1611 ;; This function uses a non-reentrant model
-  1612 ;;
-  1613                           psect	text3,local,class=CODE,delta=2,merge=1,group=0
-  1614                           	file	"../disp7seg.X/botoes.c"
-  1615                           	line	12
-  1616                           global __ptext3
-  1617                           __ptext3:	;psect for function _botoes_init
-  1618  0785                     psect	text3
-  1619                           	file	"../disp7seg.X/botoes.c"
-  1620                           	line	12
-  1621                           	global	__size_of_botoes_init
-  1622                           	__size_of_botoes_init	equ	__end_of_botoes_init-_botoes_init
-  1623  0005                     	
-  1624                           _botoes_init:	
-  1625  0785                     ;incstack = 0
-  1626                           	opt	stack 7
-  1627                           ; Regs used in _botoes_init: []
-  1628                           	line	14
-  1629                           	
-  1630                           l644:	
-  1631  0785                     ;../disp7seg.X/botoes.c: 14:     TRISDbits.TRISD3 = 1;
-  1632                           	bsf	status, 5	;RP0=1, select bank1
-  1633  0785  1683               	bcf	status, 6	;RP1=0, select bank1
-  1634  0786  1303               	bsf	(136)^080h,3	;volatile
-  1635  0787  1588               	line	15
-  1636                           ;../disp7seg.X/botoes.c: 15:     TRISDbits.TRISD2 = 1;
-  1637                           	bsf	(136)^080h,2	;volatile
-  1638  0788  1508               	line	16
-  1639                           	
-  1640                           l25:	
-  1641  0789                     	return
-  1642  0789  0008               	opt stack 0
-  1643                           GLOBAL	__end_of_botoes_init
-  1644                           	__end_of_botoes_init:
-  1645  078A                     	signat	_botoes_init,89
-  1646                           global	___latbits
-  1647                           ___latbits	equ	2
-  1648  0002                     	global	btemp
-  1649                           	btemp set 07Eh
-  1650  007E                     
-  1651                           	DABS	1,126,2	;btemp
-  1652                           	global	wtemp0
-  1653                           	wtemp0 set btemp+0
-  1654  007E                     	end
+  1423                           l27:	
+  1424  06D8                     	line	27
+  1425                           	
+  1426                           l802:	
+  1427  06D8                     ;main.c: 27:                    botoes_init();
+  1428                           	fcall	_botoes_init
+  1429  06D8  120A  118A  2638  120A  118A  	line	28
+  1430                           ;main.c: 28:                    contatores_init();
+  1431                           	fcall	_contatores_init
+  1432  06DD  120A  118A  266B  120A  118A  	line	29
+  1433                           ;main.c: 29:                    display7seg_init();
+  1434                           	fcall	_display7seg_init
+  1435  06E2  120A  118A  2661  120A  118A  	line	30
+  1436                           	
+  1437                           l804:	
+  1438  06E7                     ;main.c: 30:                    estado =1;
+  1439                           	movlw	01h
+  1440  06E7  3001               	movwf	(main@estado)
+  1441  06E8  00F8               	movlw	0
+  1442  06E9  3000               	movwf	((main@estado))+1
+  1443  06EA  00F9               	line	31
+  1444                           ;main.c: 31:                    break;
+  1445                           	goto	l844
+  1446  06EB  2FD5               	line	32
+  1447                           ;main.c: 32:            case 1:
+  1448                           	
+  1449                           l29:	
+  1450  06EC                     	line	33
+  1451                           	
+  1452                           l806:	
+  1453  06EC                     ;main.c: 33:                    if(s1() == 1)
+  1454                           	fcall	_s1
+  1455  06EC  120A  118A  2643  120A  118A  	xorlw	01h
+  1456  06F1  3A01               	skipz
+  1457  06F2  1D03               	goto	u121
+  1458  06F3  2EF5               	goto	u120
+  1459  06F4  2EF6               u121:
+  1460  06F5                     	goto	l844
+  1461  06F5  2FD5               u120:
+  1462  06F6                     	line	34
+  1463                           	
+  1464                           l808:	
+  1465  06F6                     ;main.c: 34:                        estado =2;
+  1466                           	movlw	02h
+  1467  06F6  3002               	movwf	(main@estado)
+  1468  06F7  00F8               	movlw	0
+  1469  06F8  3000               	movwf	((main@estado))+1
+  1470  06F9  00F9               	goto	l844
+  1471  06FA  2FD5               	
+  1472                           l30:	
+  1473  06FB                     	line	36
+  1474                           ;main.c: 36:                    break;
+  1475                           	goto	l844
+  1476  06FB  2FD5               	line	37
+  1477                           ;main.c: 37:            case 2:
+  1478                           	
+  1479                           l31:	
+  1480  06FC                     	line	39
+  1481                           	
+  1482                           l810:	
+  1483  06FC                     ;main.c: 39:                    K1(1);
+  1484                           	movlw	01h
+  1485  06FC  3001               	movwf	(K1@x)
+  1486  06FD  00F0               	movlw	0
+  1487  06FE  3000               	movwf	((K1@x))+1
+  1488  06FF  00F1               	fcall	_K1
+  1489  0700  120A  118A  2649  120A  118A  	line	40
+  1490                           ;main.c: 40:                    K2(1);
+  1491                           	movlw	01h
+  1492  0705  3001               	movwf	(K2@x)
+  1493  0706  00F0               	movlw	0
+  1494  0707  3000               	movwf	((K2@x))+1
+  1495  0708  00F1               	fcall	_K2
+  1496  0709  120A  118A  2651  120A  118A  	line	41
+  1497                           ;main.c: 41:                    K3(0);
+  1498                           	movlw	0
+  1499  070E  3000               	movwf	(K3@x)
+  1500  070F  00F0               	movwf	(K3@x+1)
+  1501  0710  00F1               	fcall	_K3
+  1502  0711  120A  118A  2659  120A  118A  	line	42
+  1503                           	
+  1504                           l812:	
+  1505  0716                     ;main.c: 42:                    t =2000;
+  1506                           	movlw	0D0h
+  1507  0716  30D0               	movwf	(main@t)
+  1508  0717  00F5               	movlw	07h
+  1509  0718  3007               	movwf	((main@t))+1
+  1510  0719  00F6               	line	43
+  1511                           	
+  1512                           l814:	
+  1513  071A                     ;main.c: 43:                    estado =3;
+  1514                           	movlw	03h
+  1515  071A  3003               	movwf	(main@estado)
+  1516  071B  00F8               	movlw	0
+  1517  071C  3000               	movwf	((main@estado))+1
+  1518  071D  00F9               	line	44
+  1519                           ;main.c: 44:                    break;
+  1520                           	goto	l844
+  1521  071E  2FD5               	line	45
+  1522                           ;main.c: 45:            case 3:
+  1523                           	
+  1524                           l32:	
+  1525  071F                     	line	46
+  1526                           	
+  1527                           l816:	
+  1528  071F                     ;main.c: 46:                     if(s0()==1)
+  1529                           	fcall	_s0
+  1530  071F  120A  118A  263D  120A  118A  	xorlw	01h
+  1531  0724  3A01               	skipz
+  1532  0725  1D03               	goto	u131
+  1533  0726  2F28               	goto	u130
+  1534  0727  2F29               u131:
+  1535  0728                     	goto	l822
+  1536  0728  2F46               u130:
+  1537  0729                     	line	48
+  1538                           	
+  1539                           l818:	
+  1540  0729                     ;main.c: 47:                    {;main.c: 48:                      K1(0);
+  1541                           	movlw	0
+  1542  0729  3000               	movwf	(K1@x)
+  1543  072A  00F0               	movwf	(K1@x+1)
+  1544  072B  00F1               	fcall	_K1
+  1545  072C  120A  118A  2649  120A  118A  	line	49
+  1546                           ;main.c: 49:                      K2(0);
+  1547                           	movlw	0
+  1548  0731  3000               	movwf	(K2@x)
+  1549  0732  00F0               	movwf	(K2@x+1)
+  1550  0733  00F1               	fcall	_K2
+  1551  0734  120A  118A  2651  120A  118A  	line	50
+  1552                           ;main.c: 50:                      K3(0);
+  1553                           	movlw	0
+  1554  0739  3000               	movwf	(K3@x)
+  1555  073A  00F0               	movwf	(K3@x+1)
+  1556  073B  00F1               	fcall	_K3
+  1557  073C  120A  118A  2659  120A  118A  	line	51
+  1558                           	
+  1559                           l820:	
+  1560  0741                     ;main.c: 51:                      estado =1;
+  1561                           	movlw	01h
+  1562  0741  3001               	movwf	(main@estado)
+  1563  0742  00F8               	movlw	0
+  1564  0743  3000               	movwf	((main@estado))+1
+  1565  0744  00F9               	goto	l822
+  1566  0745  2F46               	line	52
+  1567                           ;main.c: 52:                    }
+  1568                           	
+  1569                           l33:	
+  1570  0746                     	line	54
+  1571                           	
+  1572                           l822:	
+  1573  0746                     ;main.c: 54:                    delay (1);
+  1574                           	movlw	01h
+  1575  0746  3001               	movwf	(delay@t)
+  1576  0747  00F0               	movlw	0
+  1577  0748  3000               	movwf	((delay@t))+1
+  1578  0749  00F1               	fcall	_delay
+  1579  074A  120A  118A  2699  120A  118A  	line	55
+  1580                           ;main.c: 55:                     --t;
+  1581                           	movlw	0FFh
+  1582  074F  30FF               	addwf	(main@t),f
+  1583  0750  07F5               	skipnc
+  1584  0751  1803               	incf	(main@t+1),f
+  1585  0752  0AF6               	movlw	0FFh
+  1586  0753  30FF               	addwf	(main@t+1),f
+  1587  0754  07F6               	line	56
+  1588                           	
+  1589                           l824:	
+  1590  0755                     ;main.c: 56:                    if(t<=0)
+  1591                           	movf	(main@t+1),w
+  1592  0755  0876               	xorlw	80h
+  1593  0756  3A80               	movwf	btemp+1
+  1594  0757  00FF               	movlw	(0)^80h
+  1595  0758  3080               	subwf	btemp+1,w
+  1596  0759  027F               	skipz
+  1597  075A  1D03               	goto	u145
+  1598  075B  2F5E               	movlw	01h
+  1599  075C  3001               	subwf	(main@t),w
+  1600  075D  0275               u145:
+  1601  075E                     
+  1602                           	skipnc
+  1603  075E  1803               	goto	u141
+  1604  075F  2F61               	goto	u140
+  1605  0760  2F62               u141:
+  1606  0761                     	goto	l844
+  1607  0761  2FD5               u140:
+  1608  0762                     	line	58
+  1609                           	
+  1610                           l826:	
+  1611  0762                     ;main.c: 58:                     estado =4;
+  1612                           	movlw	04h
+  1613  0762  3004               	movwf	(main@estado)
+  1614  0763  00F8               	movlw	0
+  1615  0764  3000               	movwf	((main@estado))+1
+  1616  0765  00F9               	goto	l844
+  1617  0766  2FD5               	
+  1618                           l34:	
+  1619  0767                     	line	59
+  1620                           ;main.c: 59:                    break;
+  1621                           	goto	l844
+  1622  0767  2FD5               	line	60
+  1623                           ;main.c: 60:            case 4:
+  1624                           	
+  1625                           l35:	
+  1626  0768                     	line	61
+  1627                           	
+  1628                           l828:	
+  1629  0768                     ;main.c: 61:                    ++cont;
+  1630                           	movlw	low(01h)
+  1631  0768  3001               	movwf	(??_main+0)+0
+  1632  0769  00F3               	movf	(??_main+0)+0,w
+  1633  076A  0873               	addwf	(main@cont),f
+  1634  076B  07F7               	line	63
+  1635                           	
+  1636                           l830:	
+  1637  076C                     ;main.c: 63:                    estado =5;
+  1638                           	movlw	05h
+  1639  076C  3005               	movwf	(main@estado)
+  1640  076D  00F8               	movlw	0
+  1641  076E  3000               	movwf	((main@estado))+1
+  1642  076F  00F9               	line	64
+  1643                           ;main.c: 64:                    break;
+  1644                           	goto	l844
+  1645  0770  2FD5               	line	65
+  1646                           ;main.c: 65:            case 5:
+  1647                           	
+  1648                           l36:	
+  1649  0771                     	line	67
+  1650                           	
+  1651                           l832:	
+  1652  0771                     ;main.c: 67:                      K1(1);
+  1653                           	movlw	01h
+  1654  0771  3001               	movwf	(K1@x)
+  1655  0772  00F0               	movlw	0
+  1656  0773  3000               	movwf	((K1@x))+1
+  1657  0774  00F1               	fcall	_K1
+  1658  0775  120A  118A  2649  120A  118A  	line	68
+  1659                           ;main.c: 68:                      K2(0);
+  1660                           	movlw	0
+  1661  077A  3000               	movwf	(K2@x)
+  1662  077B  00F0               	movwf	(K2@x+1)
+  1663  077C  00F1               	fcall	_K2
+  1664  077D  120A  118A  2651  120A  118A  	line	69
+  1665                           ;main.c: 69:                      K3(1);
+  1666                           	movlw	01h
+  1667  0782  3001               	movwf	(K3@x)
+  1668  0783  00F0               	movlw	0
+  1669  0784  3000               	movwf	((K3@x))+1
+  1670  0785  00F1               	fcall	_K3
+  1671  0786  120A  118A  2659  120A  118A  	line	70
+  1672                           ;main.c: 70:                    if(s0()==1)
+  1673                           	fcall	_s0
+  1674  078B  120A  118A  263D  120A  118A  	xorlw	01h
+  1675  0790  3A01               	skipz
+  1676  0791  1D03               	goto	u151
+  1677  0792  2F94               	goto	u150
+  1678  0793  2F95               u151:
+  1679  0794                     	goto	l844
+  1680  0794  2FD5               u150:
+  1681  0795                     	line	71
+  1682                           	
+  1683                           l834:	
+  1684  0795                     ;main.c: 71:                    estado =6;
+  1685                           	movlw	06h
+  1686  0795  3006               	movwf	(main@estado)
+  1687  0796  00F8               	movlw	0
+  1688  0797  3000               	movwf	((main@estado))+1
+  1689  0798  00F9               	goto	l844
+  1690  0799  2FD5               	
+  1691                           l37:	
+  1692  079A                     	line	72
+  1693                           ;main.c: 72:                    break;
+  1694                           	goto	l844
+  1695  079A  2FD5               	line	73
+  1696                           ;main.c: 73:            case 6:
+  1697                           	
+  1698                           l38:	
+  1699  079B                     	line	74
+  1700                           	
+  1701                           l836:	
+  1702  079B                     ;main.c: 74:                    K1(0);
+  1703                           	movlw	0
+  1704  079B  3000               	movwf	(K1@x)
+  1705  079C  00F0               	movwf	(K1@x+1)
+  1706  079D  00F1               	fcall	_K1
+  1707  079E  120A  118A  2649  120A  118A  	line	75
+  1708                           ;main.c: 75:                    K2(0);
+  1709                           	movlw	0
+  1710  07A3  3000               	movwf	(K2@x)
+  1711  07A4  00F0               	movwf	(K2@x+1)
+  1712  07A5  00F1               	fcall	_K2
+  1713  07A6  120A  118A  2651  120A  118A  	line	76
+  1714                           ;main.c: 76:                    K3(0);
+  1715                           	movlw	0
+  1716  07AB  3000               	movwf	(K3@x)
+  1717  07AC  00F0               	movwf	(K3@x+1)
+  1718  07AD  00F1               	fcall	_K3
+  1719  07AE  120A  118A  2659  120A  118A  	line	77
+  1720                           	
+  1721                           l838:	
+  1722  07B3                     ;main.c: 77:                    estado =1;
+  1723                           	movlw	01h
+  1724  07B3  3001               	movwf	(main@estado)
+  1725  07B4  00F8               	movlw	0
+  1726  07B5  3000               	movwf	((main@estado))+1
+  1727  07B6  00F9               	line	78
+  1728                           ;main.c: 78:                    break;
+  1729                           	goto	l844
+  1730  07B7  2FD5               	line	81
+  1731                           	
+  1732                           l840:	
+  1733  07B8                     ;main.c: 81:        }
+  1734                           	goto	l844
+  1735  07B8  2FD5               	
+  1736                           l26:	
+  1737  07B9                     	
+  1738                           l842:	
+  1739  07B9                     	; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-s
+                                 witches
+  1740                           ; Switch size 1, requested type "space"
+  1741                           ; Number of cases is 1, Range of values is 0 to 0
+  1742                           ; switch strategies available:
+  1743                           ; Name         Instructions Cycles
+  1744                           ; simple_byte            4     3 (average)
+  1745                           ; direct_byte           11     8 (fixed)
+  1746                           ; jumptable            260     6 (fixed)
+  1747                           ;	Chosen strategy is simple_byte
+  1748                           
+  1749                           	movf (main@estado+1),w
+  1750  07B9  0879               	opt asmopt_push
+  1751                           	opt asmopt_off
+  1752                           	xorlw	0^0	; case 0
+  1753  07BA  3A00               	skipnz
+  1754  07BB  1903               	goto	l874
+  1755  07BC  2FBE               	goto	l844
+  1756  07BD  2FD5               	opt asmopt_pop
+  1757                           	
+  1758                           l874:	
+  1759  07BE                     ; Switch size 1, requested type "space"
+  1760                           ; Number of cases is 7, Range of values is 0 to 6
+  1761                           ; switch strategies available:
+  1762                           ; Name         Instructions Cycles
+  1763                           ; simple_byte           22    12 (average)
+  1764                           ; direct_byte           29     8 (fixed)
+  1765                           ; jumptable            260     6 (fixed)
+  1766                           ;	Chosen strategy is simple_byte
+  1767                           
+  1768                           	movf (main@estado),w
+  1769  07BE  0878               	opt asmopt_push
+  1770                           	opt asmopt_off
+  1771                           	xorlw	0^0	; case 0
+  1772  07BF  3A00               	skipnz
+  1773  07C0  1903               	goto	l802
+  1774  07C1  2ED8               	xorlw	1^0	; case 1
+  1775  07C2  3A01               	skipnz
+  1776  07C3  1903               	goto	l806
+  1777  07C4  2EEC               	xorlw	2^1	; case 2
+  1778  07C5  3A03               	skipnz
+  1779  07C6  1903               	goto	l810
+  1780  07C7  2EFC               	xorlw	3^2	; case 3
+  1781  07C8  3A01               	skipnz
+  1782  07C9  1903               	goto	l816
+  1783  07CA  2F1F               	xorlw	4^3	; case 4
+  1784  07CB  3A07               	skipnz
+  1785  07CC  1903               	goto	l828
+  1786  07CD  2F68               	xorlw	5^4	; case 5
+  1787  07CE  3A01               	skipnz
+  1788  07CF  1903               	goto	l832
+  1789  07D0  2F71               	xorlw	6^5	; case 6
+  1790  07D1  3A03               	skipnz
+  1791  07D2  1903               	goto	l836
+  1792  07D3  2F9B               	goto	l844
+  1793  07D4  2FD5               	opt asmopt_pop
+  1794                           
+  1795                           	
+  1796                           l28:	
+  1797  07D5                     	line	82
+  1798                           	
+  1799                           l844:	
+  1800  07D5                     ;main.c: 82:        display7seg( cont );
+  1801                           	movf	(main@cont),w
+  1802  07D5  0877               	movwf	(??_main+0)+0
+  1803  07D6  00F3               	clrf	(??_main+0)+0+1
+  1804  07D7  01F4               	movf	0+(??_main+0)+0,w
+  1805  07D8  0873               	movwf	(display7seg@c)
+  1806  07D9  00F0               	movf	1+(??_main+0)+0,w
+  1807  07DA  0874               	movwf	(display7seg@c+1)
+  1808  07DB  00F1               	fcall	_display7seg
+  1809  07DC  120A  118A  26B0  120A  118A  	line	84
+  1810                           	
+  1811                           l846:	
+  1812  07E1                     ;main.c: 84:         if( cont >= 10 )
+  1813                           	movlw	low(0Ah)
+  1814  07E1  300A               	subwf	(main@cont),w
+  1815  07E2  0277               	skipc
+  1816  07E3  1C03               	goto	u161
+  1817  07E4  2FE6               	goto	u160
+  1818  07E5  2FE7               u161:
+  1819  07E6                     	goto	l842
+  1820  07E6  2FB9               u160:
+  1821  07E7                     	line	85
+  1822                           	
+  1823                           l848:	
+  1824  07E7                     ;main.c: 85:             cont = 0;
+  1825                           	clrf	(main@cont)
+  1826  07E7  01F7               	goto	l842
+  1827  07E8  2FB9               	
+  1828                           l39:	
+  1829  07E9                     	goto	l842
+  1830  07E9  2FB9               	line	87
+  1831                           ;main.c: 87:     }
+  1832                           	
+  1833                           l40:	
+  1834  07EA                     	goto	l842
+  1835  07EA  2FB9               	
+  1836                           l41:	
+  1837  07EB                     	line	88
+  1838                           	
+  1839                           l42:	
+  1840  07EB                     	global	start
+  1841                           	ljmp	start
+  1842  07EB  120A  118A  2800   	opt stack 0
+  1843                           GLOBAL	__end_of_main
+  1844                           	__end_of_main:
+  1845  07EE                     	signat	_main,89
+  1846                           	global	_s1
+  1847                           
+  1848 ;; *************** function _s1 *****************
+  1849 ;; Defined at:
+  1850 ;;		line 18 in file "../disp7seg.X/botoes.c"
+  1851 ;; Parameters:    Size  Location     Type
+  1852 ;;		None
+  1853 ;; Auto vars:     Size  Location     Type
+  1854 ;;		None
+  1855 ;; Return value:  Size  Location     Type
+  1856 ;;                  1    wreg      unsigned char 
+  1857 ;; Registers used:
+  1858 ;;		wreg, status,2, status,0
+  1859 ;; Tracked objects:
+  1860 ;;		On entry : 0/0
+  1861 ;;		On exit  : 0/0
+  1862 ;;		Unchanged: 0/0
+  1863 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1864 ;;      Params:         0       0       0       0       0
+  1865 ;;      Locals:         0       0       0       0       0
+  1866 ;;      Temps:          0       0       0       0       0
+  1867 ;;      Totals:         0       0       0       0       0
+  1868 ;;Total ram usage:        0 bytes
+  1869 ;; Hardware stack levels used:    1
+  1870 ;; This function calls:
+  1871 ;;		Nothing
+  1872 ;; This function is called by:
+  1873 ;;		_main
+  1874 ;; This function uses a non-reentrant model
+  1875 ;;
+  1876                           psect	text1,local,class=CODE,delta=2,merge=1,group=0
+  1877                           	file	"../disp7seg.X/botoes.c"
+  1878                           	line	18
+  1879                           global __ptext1
+  1880                           __ptext1:	;psect for function _s1
+  1881  0643                     psect	text1
+  1882                           	file	"../disp7seg.X/botoes.c"
+  1883                           	line	18
+  1884                           	global	__size_of_s1
+  1885                           	__size_of_s1	equ	__end_of_s1-_s1
+  1886  0006                     	
+  1887                           _s1:	
+  1888  0643                     ;incstack = 0
+  1889                           	opt	stack 7
+  1890                           ; Regs used in _s1: [wreg+status,2+status,0]
+  1891                           	line	20
+  1892                           	
+  1893                           l674:	
+  1894  0643                     ;../disp7seg.X/botoes.c: 20:     return(PORTDbits.RD0);
+  1895                           	bcf	status, 5	;RP0=0, select bank0
+  1896  0643  1283               	bcf	status, 6	;RP1=0, select bank0
+  1897  0644  1303               	movf	(8),w	;volatile
+  1898  0645  0808               	andlw	(1<<1)-1
+  1899  0646  3901               	goto	l52
+  1900  0647  2E48               	
+  1901                           l676:	
+  1902  0648                     	line	21
+  1903                           	
+  1904                           l52:	
+  1905  0648                     	return
+  1906  0648  0008               	opt stack 0
+  1907                           GLOBAL	__end_of_s1
+  1908                           	__end_of_s1:
+  1909  0649                     	signat	_s1,89
+  1910                           	global	_s0
+  1911                           
+  1912 ;; *************** function _s0 *****************
+  1913 ;; Defined at:
+  1914 ;;		line 22 in file "../disp7seg.X/botoes.c"
+  1915 ;; Parameters:    Size  Location     Type
+  1916 ;;		None
+  1917 ;; Auto vars:     Size  Location     Type
+  1918 ;;		None
+  1919 ;; Return value:  Size  Location     Type
+  1920 ;;                  1    wreg      unsigned char 
+  1921 ;; Registers used:
+  1922 ;;		wreg, status,2, status,0
+  1923 ;; Tracked objects:
+  1924 ;;		On entry : 0/0
+  1925 ;;		On exit  : 0/0
+  1926 ;;		Unchanged: 0/0
+  1927 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1928 ;;      Params:         0       0       0       0       0
+  1929 ;;      Locals:         0       0       0       0       0
+  1930 ;;      Temps:          0       0       0       0       0
+  1931 ;;      Totals:         0       0       0       0       0
+  1932 ;;Total ram usage:        0 bytes
+  1933 ;; Hardware stack levels used:    1
+  1934 ;; This function calls:
+  1935 ;;		Nothing
+  1936 ;; This function is called by:
+  1937 ;;		_main
+  1938 ;; This function uses a non-reentrant model
+  1939 ;;
+  1940                           psect	text2,local,class=CODE,delta=2,merge=1,group=0
+  1941                           	line	22
+  1942                           global __ptext2
+  1943                           __ptext2:	;psect for function _s0
+  1944  063D                     psect	text2
+  1945                           	file	"../disp7seg.X/botoes.c"
+  1946                           	line	22
+  1947                           	global	__size_of_s0
+  1948                           	__size_of_s0	equ	__end_of_s0-_s0
+  1949  0006                     	
+  1950                           _s0:	
+  1951  063D                     ;incstack = 0
+  1952                           	opt	stack 7
+  1953                           ; Regs used in _s0: [wreg+status,2+status,0]
+  1954                           	line	24
+  1955                           	
+  1956                           l684:	
+  1957  063D                     ;../disp7seg.X/botoes.c: 24:     return(PORTDbits.RD1);
+  1958                           	bcf	status, 5	;RP0=0, select bank0
+  1959  063D  1283               	bcf	status, 6	;RP1=0, select bank0
+  1960  063E  1303               	rrf	(8),w	;volatile
+  1961  063F  0C08               	andlw	(1<<1)-1
+  1962  0640  3901               	goto	l55
+  1963  0641  2E42               	
+  1964                           l686:	
+  1965  0642                     	line	25
+  1966                           	
+  1967                           l55:	
+  1968  0642                     	return
+  1969  0642  0008               	opt stack 0
+  1970                           GLOBAL	__end_of_s0
+  1971                           	__end_of_s0:
+  1972  0643                     	signat	_s0,89
+  1973                           	global	_display7seg_init
+  1974                           
+  1975 ;; *************** function _display7seg_init *****************
+  1976 ;; Defined at:
+  1977 ;;		line 17 in file "../disp7seg.X/display7seg.c"
+  1978 ;; Parameters:    Size  Location     Type
+  1979 ;;		None
+  1980 ;; Auto vars:     Size  Location     Type
+  1981 ;;		None
+  1982 ;; Return value:  Size  Location     Type
+  1983 ;;                  1    wreg      void 
+  1984 ;; Registers used:
+  1985 ;;		status,2
+  1986 ;; Tracked objects:
+  1987 ;;		On entry : 0/0
+  1988 ;;		On exit  : 0/0
+  1989 ;;		Unchanged: 0/0
+  1990 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1991 ;;      Params:         0       0       0       0       0
+  1992 ;;      Locals:         0       0       0       0       0
+  1993 ;;      Temps:          0       0       0       0       0
+  1994 ;;      Totals:         0       0       0       0       0
+  1995 ;;Total ram usage:        0 bytes
+  1996 ;; Hardware stack levels used:    1
+  1997 ;; This function calls:
+  1998 ;;		Nothing
+  1999 ;; This function is called by:
+  2000 ;;		_main
+  2001 ;; This function uses a non-reentrant model
+  2002 ;;
+  2003                           psect	text3,local,class=CODE,delta=2,merge=1,group=0
+  2004                           	file	"../disp7seg.X/display7seg.c"
+  2005                           	line	17
+  2006                           global __ptext3
+  2007                           __ptext3:	;psect for function _display7seg_init
+  2008  0661                     psect	text3
+  2009                           	file	"../disp7seg.X/display7seg.c"
+  2010                           	line	17
+  2011                           	global	__size_of_display7seg_init
+  2012                           	__size_of_display7seg_init	equ	__end_of_display7seg_init-_display7seg_init
+  2013  000A                     	
+  2014                           _display7seg_init:	
+  2015  0661                     ;incstack = 0
+  2016                           	opt	stack 7
+  2017                           ; Regs used in _display7seg_init: [status,2]
+  2018                           	line	19
+  2019                           	
+  2020                           l668:	
+  2021  0661                     ;../disp7seg.X/display7seg.c: 19:     ANSELH = 0;
+  2022                           	bsf	status, 5	;RP0=1, select bank3
+  2023  0661  1683               	bsf	status, 6	;RP1=1, select bank3
+  2024  0662  1703               	clrf	(393)^0180h	;volatile
+  2025  0663  0189               	line	20
+  2026                           ;../disp7seg.X/display7seg.c: 20:     TRISB =0x00;
+  2027                           	bsf	status, 5	;RP0=1, select bank1
+  2028  0664  1683               	bcf	status, 6	;RP1=0, select bank1
+  2029  0665  1303               	clrf	(134)^080h	;volatile
+  2030  0666  0186               	line	21
+  2031                           ;../disp7seg.X/display7seg.c: 21:     PORTB =0x00;
+  2032                           	bcf	status, 5	;RP0=0, select bank0
+  2033  0667  1283               	bcf	status, 6	;RP1=0, select bank0
+  2034  0668  1303               	clrf	(6)	;volatile
+  2035  0669  0186               	line	22
+  2036                           	
+  2037                           l74:	
+  2038  066A                     	return
+  2039  066A  0008               	opt stack 0
+  2040                           GLOBAL	__end_of_display7seg_init
+  2041                           	__end_of_display7seg_init:
+  2042  066B                     	signat	_display7seg_init,89
+  2043                           	global	_display7seg
+  2044                           
+  2045 ;; *************** function _display7seg *****************
+  2046 ;; Defined at:
+  2047 ;;		line 24 in file "../disp7seg.X/display7seg.c"
+  2048 ;; Parameters:    Size  Location     Type
+  2049 ;;  c               2    0[COMMON] int 
+  2050 ;; Auto vars:     Size  Location     Type
+  2051 ;;		None
+  2052 ;; Return value:  Size  Location     Type
+  2053 ;;                  1    wreg      void 
+  2054 ;; Registers used:
+  2055 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1
+  2056 ;; Tracked objects:
+  2057 ;;		On entry : 0/0
+  2058 ;;		On exit  : 0/0
+  2059 ;;		Unchanged: 0/0
+  2060 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2061 ;;      Params:         2       0       0       0       0
+  2062 ;;      Locals:         0       0       0       0       0
+  2063 ;;      Temps:          0       0       0       0       0
+  2064 ;;      Totals:         2       0       0       0       0
+  2065 ;;Total ram usage:        2 bytes
+  2066 ;; Hardware stack levels used:    1
+  2067 ;; This function calls:
+  2068 ;;		Nothing
+  2069 ;; This function is called by:
+  2070 ;;		_main
+  2071 ;; This function uses a non-reentrant model
+  2072 ;;
+  2073                           psect	text4,local,class=CODE,delta=2,merge=1,group=0
+  2074                           	line	24
+  2075                           global __ptext4
+  2076                           __ptext4:	;psect for function _display7seg
+  2077  06B0                     psect	text4
+  2078                           	file	"../disp7seg.X/display7seg.c"
+  2079                           	line	24
+  2080                           	global	__size_of_display7seg
+  2081                           	__size_of_display7seg	equ	__end_of_display7seg-_display7seg
+  2082  001F                     	
+  2083                           _display7seg:	
+  2084  06B0                     ;incstack = 0
+  2085                           	opt	stack 7
+  2086                           ; Regs used in _display7seg: [wreg-fsr0h+status,2+status,0+btemp+1]
+  2087                           	line	26
+  2088                           	
+  2089                           l790:	
+  2090  06B0                     ;../disp7seg.X/display7seg.c: 24: void display7seg( int c );../disp7seg.X/display7seg.c:
+                                  25: {;../disp7seg.X/display7seg.c: 26:     if(c >=0 && c <= 15)
+  2091                           	btfsc	(display7seg@c+1),7
+  2092  06B0  1BF1               	goto	u101
+  2093  06B1  2EB3               	goto	u100
+  2094  06B2  2EB4               u101:
+  2095  06B3                     	goto	l796
+  2096  06B3  2ECA               u100:
+  2097  06B4                     	
+  2098                           l792:	
+  2099  06B4                     	movf	(display7seg@c+1),w
+  2100  06B4  0871               	xorlw	80h
+  2101  06B5  3A80               	movwf	btemp+1
+  2102  06B6  00FF               	movlw	(0)^80h
+  2103  06B7  3080               	subwf	btemp+1,w
+  2104  06B8  027F               	skipz
+  2105  06B9  1D03               	goto	u115
+  2106  06BA  2EBD               	movlw	010h
+  2107  06BB  3010               	subwf	(display7seg@c),w
+  2108  06BC  0270               u115:
+  2109  06BD                     
+  2110                           	skipnc
+  2111  06BD  1803               	goto	u111
+  2112  06BE  2EC0               	goto	u110
+  2113  06BF  2EC1               u111:
+  2114  06C0                     	goto	l796
+  2115  06C0  2ECA               u110:
+  2116  06C1                     	line	27
+  2117                           	
+  2118                           l794:	
+  2119  06C1                     ;../disp7seg.X/display7seg.c: 27:         PORTB = vetor[c];
+  2120                           	movf	(display7seg@c),w
+  2121  06C1  0870               	addlw	low(_vetor|((0x0)<<8))&0ffh
+  2122  06C2  3E20               	movwf	fsr0
+  2123  06C3  0084               	bcf	status, 7	;select IRP bank0
+  2124  06C4  1383               	movf	indf,w
+  2125  06C5  0800               	bcf	status, 5	;RP0=0, select bank0
+  2126  06C6  1283               	bcf	status, 6	;RP1=0, select bank0
+  2127  06C7  1303               	movwf	(6)	;volatile
+  2128  06C8  0086               	goto	l79
+  2129  06C9  2ECE               	line	28
+  2130                           ;../disp7seg.X/display7seg.c: 28:     else
+  2131                           	
+  2132                           l77:	
+  2133  06CA                     	line	29
+  2134                           	
+  2135                           l796:	
+  2136  06CA                     ;../disp7seg.X/display7seg.c: 29:         PORTB = 0x00;
+  2137                           	bcf	status, 5	;RP0=0, select bank0
+  2138  06CA  1283               	bcf	status, 6	;RP1=0, select bank0
+  2139  06CB  1303               	clrf	(6)	;volatile
+  2140  06CC  0186               	goto	l79
+  2141  06CD  2ECE               	
+  2142                           l78:	
+  2143  06CE                     	line	30
+  2144                           	
+  2145                           l79:	
+  2146  06CE                     	return
+  2147  06CE  0008               	opt stack 0
+  2148                           GLOBAL	__end_of_display7seg
+  2149                           	__end_of_display7seg:
+  2150  06CF                     	signat	_display7seg,4217
+  2151                           	global	_delay
+  2152                           
+  2153 ;; *************** function _delay *****************
+  2154 ;; Defined at:
+  2155 ;;		line 12 in file "../disp7seg.X/delay.c"
+  2156 ;; Parameters:    Size  Location     Type
+  2157 ;;  t               2    0[COMMON] unsigned int 
+  2158 ;; Auto vars:     Size  Location     Type
+  2159 ;;		None
+  2160 ;; Return value:  Size  Location     Type
+  2161 ;;                  1    wreg      void 
+  2162 ;; Registers used:
+  2163 ;;		wreg, status,2, status,0
+  2164 ;; Tracked objects:
+  2165 ;;		On entry : 0/0
+  2166 ;;		On exit  : 0/0
+  2167 ;;		Unchanged: 0/0
+  2168 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2169 ;;      Params:         2       0       0       0       0
+  2170 ;;      Locals:         0       0       0       0       0
+  2171 ;;      Temps:          1       0       0       0       0
+  2172 ;;      Totals:         3       0       0       0       0
+  2173 ;;Total ram usage:        3 bytes
+  2174 ;; Hardware stack levels used:    1
+  2175 ;; This function calls:
+  2176 ;;		Nothing
+  2177 ;; This function is called by:
+  2178 ;;		_main
+  2179 ;; This function uses a non-reentrant model
+  2180 ;;
+  2181                           psect	text5,local,class=CODE,delta=2,merge=1,group=0
+  2182                           	file	"../disp7seg.X/delay.c"
+  2183                           	line	12
+  2184                           global __ptext5
+  2185                           __ptext5:	;psect for function _delay
+  2186  0699                     psect	text5
+  2187                           	file	"../disp7seg.X/delay.c"
+  2188                           	line	12
+  2189                           	global	__size_of_delay
+  2190                           	__size_of_delay	equ	__end_of_delay-_delay
+  2191  0017                     	
+  2192                           _delay:	
+  2193  0699                     ;incstack = 0
+  2194                           	opt	stack 7
+  2195                           ; Regs used in _delay: [wreg+status,2+status,0]
+  2196                           	line	14
+  2197                           	
+  2198                           l784:	
+  2199  0699                     ;../disp7seg.X/delay.c: 12: void delay (unsigned int t);../disp7seg.X/delay.c: 13: {;../
+                                 disp7seg.X/delay.c: 14:     while (t)
+  2200                           	goto	l788
+  2201  0699  2EA8               	
+  2202                           l61:	
+  2203  069A                     	line	16
+  2204                           	
+  2205                           l786:	
+  2206  069A                     ;../disp7seg.X/delay.c: 15:     {;../disp7seg.X/delay.c: 16:         --t;
+  2207                           	movlw	01h
+  2208  069A  3001               	subwf	(delay@t),f
+  2209  069B  02F0               	movlw	0
+  2210  069C  3000               	skipc
+  2211  069D  1C03               	decf	(delay@t+1),f
+  2212  069E  03F1               	subwf	(delay@t+1),f
+  2213  069F  02F1               	line	17
+  2214                           ;../disp7seg.X/delay.c: 17:         _delay((unsigned long)((1)*(4000000/4000.0)));
+  2215                           	opt asmopt_push
+  2216                           opt asmopt_off
+  2217                           	movlw	199
+  2218  06A0  30C7               movwf	((??_delay+0)+0),f
+  2219  06A1  00F2               	u177:
+  2220  06A2                     	nop2
+  2221  06A2  2EA3               decfsz	(??_delay+0)+0,f
+  2222  06A3  0BF2               	goto	u177
+  2223  06A4  2EA2               	nop2
+  2224  06A5  2EA6               	nop2
+  2225  06A6  2EA7               opt asmopt_pop
+  2226                           
+  2227                           	goto	l788
+  2228  06A7  2EA8               	line	19
+  2229                           ;../disp7seg.X/delay.c: 19:     }
+  2230                           	
+  2231                           l60:	
+  2232  06A8                     	line	14
+  2233                           	
+  2234                           l788:	
+  2235  06A8                     ;../disp7seg.X/delay.c: 14:     while (t)
+  2236                           	movf	((delay@t)),w
+  2237  06A8  0870               iorwf	((delay@t+1)),w
+  2238  06A9  0471               	btfss	status,2
+  2239  06AA  1D03               	goto	u91
+  2240  06AB  2EAD               	goto	u90
+  2241  06AC  2EAE               u91:
+  2242  06AD                     	goto	l786
+  2243  06AD  2E9A               u90:
+  2244  06AE                     	goto	l63
+  2245  06AE  2EAF               	
+  2246                           l62:	
+  2247  06AF                     	line	21
+  2248                           	
+  2249                           l63:	
+  2250  06AF                     	return
+  2251  06AF  0008               	opt stack 0
+  2252                           GLOBAL	__end_of_delay
+  2253                           	__end_of_delay:
+  2254  06B0                     	signat	_delay,4217
+  2255                           	global	_contatores_init
+  2256                           
+  2257 ;; *************** function _contatores_init *****************
+  2258 ;; Defined at:
+  2259 ;;		line 12 in file "../partidaEstrelaTriangulo.X/contatores.c"
+  2260 ;; Parameters:    Size  Location     Type
+  2261 ;;		None
+  2262 ;; Auto vars:     Size  Location     Type
+  2263 ;;		None
+  2264 ;; Return value:  Size  Location     Type
+  2265 ;;                  1    wreg      void 
+  2266 ;; Registers used:
+  2267 ;;		None
+  2268 ;; Tracked objects:
+  2269 ;;		On entry : 0/0
+  2270 ;;		On exit  : 0/0
+  2271 ;;		Unchanged: 0/0
+  2272 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2273 ;;      Params:         0       0       0       0       0
+  2274 ;;      Locals:         0       0       0       0       0
+  2275 ;;      Temps:          0       0       0       0       0
+  2276 ;;      Totals:         0       0       0       0       0
+  2277 ;;Total ram usage:        0 bytes
+  2278 ;; Hardware stack levels used:    1
+  2279 ;; This function calls:
+  2280 ;;		Nothing
+  2281 ;; This function is called by:
+  2282 ;;		_main
+  2283 ;; This function uses a non-reentrant model
+  2284 ;;
+  2285                           psect	text6,local,class=CODE,delta=2,merge=1,group=0
+  2286                           	file	"../partidaEstrelaTriangulo.X/contatores.c"
+  2287                           	line	12
+  2288                           global __ptext6
+  2289                           __ptext6:	;psect for function _contatores_init
+  2290  066B                     psect	text6
+  2291                           	file	"../partidaEstrelaTriangulo.X/contatores.c"
+  2292                           	line	12
+  2293                           	global	__size_of_contatores_init
+  2294                           	__size_of_contatores_init	equ	__end_of_contatores_init-_contatores_init
+  2295  000B                     	
+  2296                           _contatores_init:	
+  2297  066B                     ;incstack = 0
+  2298                           	opt	stack 7
+  2299                           ; Regs used in _contatores_init: []
+  2300                           	line	14
+  2301                           	
+  2302                           l672:	
+  2303  066B                     ;../partidaEstrelaTriangulo.X/contatores.c: 14:     TRISDbits.TRISD5 = 0;
+  2304                           	bsf	status, 5	;RP0=1, select bank1
+  2305  066B  1683               	bcf	status, 6	;RP1=0, select bank1
+  2306  066C  1303               	bcf	(136)^080h,5	;volatile
+  2307  066D  1288               	line	15
+  2308                           ;../partidaEstrelaTriangulo.X/contatores.c: 15:     TRISDbits.TRISD6 = 0;
+  2309                           	bcf	(136)^080h,6	;volatile
+  2310  066E  1308               	line	16
+  2311                           ;../partidaEstrelaTriangulo.X/contatores.c: 16:     TRISDbits.TRISD7 = 0;
+  2312                           	bcf	(136)^080h,7	;volatile
+  2313  066F  1388               	line	17
+  2314                           ;../partidaEstrelaTriangulo.X/contatores.c: 17:     PORTDbits.RD5 = 0;
+  2315                           	bcf	status, 5	;RP0=0, select bank0
+  2316  0670  1283               	bcf	status, 6	;RP1=0, select bank0
+  2317  0671  1303               	bcf	(8),5	;volatile
+  2318  0672  1288               	line	18
+  2319                           ;../partidaEstrelaTriangulo.X/contatores.c: 18:     PORTDbits.RD6 = 0;
+  2320                           	bcf	(8),6	;volatile
+  2321  0673  1308               	line	19
+  2322                           ;../partidaEstrelaTriangulo.X/contatores.c: 19:     PORTDbits.RD7 = 0;
+  2323                           	bcf	(8),7	;volatile
+  2324  0674  1388               	line	20
+  2325                           	
+  2326                           l86:	
+  2327  0675                     	return
+  2328  0675  0008               	opt stack 0
+  2329                           GLOBAL	__end_of_contatores_init
+  2330                           	__end_of_contatores_init:
+  2331  0676                     	signat	_contatores_init,89
+  2332                           	global	_botoes_init
+  2333                           
+  2334 ;; *************** function _botoes_init *****************
+  2335 ;; Defined at:
+  2336 ;;		line 12 in file "../disp7seg.X/botoes.c"
+  2337 ;; Parameters:    Size  Location     Type
+  2338 ;;		None
+  2339 ;; Auto vars:     Size  Location     Type
+  2340 ;;		None
+  2341 ;; Return value:  Size  Location     Type
+  2342 ;;                  1    wreg      void 
+  2343 ;; Registers used:
+  2344 ;;		None
+  2345 ;; Tracked objects:
+  2346 ;;		On entry : 0/0
+  2347 ;;		On exit  : 0/0
+  2348 ;;		Unchanged: 0/0
+  2349 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2350 ;;      Params:         0       0       0       0       0
+  2351 ;;      Locals:         0       0       0       0       0
+  2352 ;;      Temps:          0       0       0       0       0
+  2353 ;;      Totals:         0       0       0       0       0
+  2354 ;;Total ram usage:        0 bytes
+  2355 ;; Hardware stack levels used:    1
+  2356 ;; This function calls:
+  2357 ;;		Nothing
+  2358 ;; This function is called by:
+  2359 ;;		_main
+  2360 ;; This function uses a non-reentrant model
+  2361 ;;
+  2362                           psect	text7,local,class=CODE,delta=2,merge=1,group=0
+  2363                           	file	"../disp7seg.X/botoes.c"
+  2364                           	line	12
+  2365                           global __ptext7
+  2366                           __ptext7:	;psect for function _botoes_init
+  2367  0638                     psect	text7
+  2368                           	file	"../disp7seg.X/botoes.c"
+  2369                           	line	12
+  2370                           	global	__size_of_botoes_init
+  2371                           	__size_of_botoes_init	equ	__end_of_botoes_init-_botoes_init
+  2372  0005                     	
+  2373                           _botoes_init:	
+  2374  0638                     ;incstack = 0
+  2375                           	opt	stack 7
+  2376                           ; Regs used in _botoes_init: []
+  2377                           	line	14
+  2378                           	
+  2379                           l670:	
+  2380  0638                     ;../disp7seg.X/botoes.c: 14:     TRISDbits.TRISD3 = 1;
+  2381                           	bsf	status, 5	;RP0=1, select bank1
+  2382  0638  1683               	bcf	status, 6	;RP1=0, select bank1
+  2383  0639  1303               	bsf	(136)^080h,3	;volatile
+  2384  063A  1588               	line	15
+  2385                           ;../disp7seg.X/botoes.c: 15:     TRISDbits.TRISD2 = 1;
+  2386                           	bsf	(136)^080h,2	;volatile
+  2387  063B  1508               	line	16
+  2388                           	
+  2389                           l49:	
+  2390  063C                     	return
+  2391  063C  0008               	opt stack 0
+  2392                           GLOBAL	__end_of_botoes_init
+  2393                           	__end_of_botoes_init:
+  2394  063D                     	signat	_botoes_init,89
+  2395                           	global	_K3
+  2396                           
+  2397 ;; *************** function _K3 *****************
+  2398 ;; Defined at:
+  2399 ;;		line 35 in file "../partidaEstrelaTriangulo.X/contatores.c"
+  2400 ;; Parameters:    Size  Location     Type
+  2401 ;;  x               2    0[COMMON] int 
+  2402 ;; Auto vars:     Size  Location     Type
+  2403 ;;		None
+  2404 ;; Return value:  Size  Location     Type
+  2405 ;;                  1    wreg      void 
+  2406 ;; Registers used:
+  2407 ;;		wreg, status,0
+  2408 ;; Tracked objects:
+  2409 ;;		On entry : 0/0
+  2410 ;;		On exit  : 0/0
+  2411 ;;		Unchanged: 0/0
+  2412 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2413 ;;      Params:         2       0       0       0       0
+  2414 ;;      Locals:         0       0       0       0       0
+  2415 ;;      Temps:          0       0       0       0       0
+  2416 ;;      Totals:         2       0       0       0       0
+  2417 ;;Total ram usage:        2 bytes
+  2418 ;; Hardware stack levels used:    1
+  2419 ;; This function calls:
+  2420 ;;		Nothing
+  2421 ;; This function is called by:
+  2422 ;;		_main
+  2423 ;; This function uses a non-reentrant model
+  2424 ;;
+  2425                           psect	text8,local,class=CODE,delta=2,merge=1,group=0
+  2426                           	file	"../partidaEstrelaTriangulo.X/contatores.c"
+  2427                           	line	35
+  2428                           global __ptext8
+  2429                           __ptext8:	;psect for function _K3
+  2430  0659                     psect	text8
+  2431                           	file	"../partidaEstrelaTriangulo.X/contatores.c"
+  2432                           	line	35
+  2433                           	global	__size_of_K3
+  2434                           	__size_of_K3	equ	__end_of_K3-_K3
+  2435  0008                     	
+  2436                           _K3:	
+  2437  0659                     ;incstack = 0
+  2438                           	opt	stack 7
+  2439                           ; Regs used in _K3: [wreg+status,0]
+  2440                           	line	37
+  2441                           	
+  2442                           l782:	
+  2443  0659                     ;../partidaEstrelaTriangulo.X/contatores.c: 35: void K3 (int x);../partidaEstrelaTriangu
+                                 lo.X/contatores.c: 36: {;../partidaEstrelaTriangulo.X/contatores.c: 37:     PORTDbits.RD
+                                 5 = x;
+  2444                           	rrf	(K3@x),w
+  2445  0659  0C70               	bcf	status, 5	;RP0=0, select bank0
+  2446  065A  1283               	bcf	status, 6	;RP1=0, select bank0
+  2447  065B  1303               	skipc
+  2448  065C  1C03               	bcf	(8),5	;volatile
+  2449  065D  1288               	skipnc
+  2450  065E  1803               	bsf	(8),5	;volatile
+  2451  065F  1688               	line	38
+  2452                           	
+  2453                           l95:	
+  2454  0660                     	return
+  2455  0660  0008               	opt stack 0
+  2456                           GLOBAL	__end_of_K3
+  2457                           	__end_of_K3:
+  2458  0661                     	signat	_K3,4217
+  2459                           	global	_K2
+  2460                           
+  2461 ;; *************** function _K2 *****************
+  2462 ;; Defined at:
+  2463 ;;		line 30 in file "../partidaEstrelaTriangulo.X/contatores.c"
+  2464 ;; Parameters:    Size  Location     Type
+  2465 ;;  x               2    0[COMMON] int 
+  2466 ;; Auto vars:     Size  Location     Type
+  2467 ;;		None
+  2468 ;; Return value:  Size  Location     Type
+  2469 ;;                  1    wreg      void 
+  2470 ;; Registers used:
+  2471 ;;		wreg, status,0
+  2472 ;; Tracked objects:
+  2473 ;;		On entry : 0/0
+  2474 ;;		On exit  : 0/0
+  2475 ;;		Unchanged: 0/0
+  2476 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2477 ;;      Params:         2       0       0       0       0
+  2478 ;;      Locals:         0       0       0       0       0
+  2479 ;;      Temps:          0       0       0       0       0
+  2480 ;;      Totals:         2       0       0       0       0
+  2481 ;;Total ram usage:        2 bytes
+  2482 ;; Hardware stack levels used:    1
+  2483 ;; This function calls:
+  2484 ;;		Nothing
+  2485 ;; This function is called by:
+  2486 ;;		_main
+  2487 ;; This function uses a non-reentrant model
+  2488 ;;
+  2489                           psect	text9,local,class=CODE,delta=2,merge=1,group=0
+  2490                           	line	30
+  2491                           global __ptext9
+  2492                           __ptext9:	;psect for function _K2
+  2493  0651                     psect	text9
+  2494                           	file	"../partidaEstrelaTriangulo.X/contatores.c"
+  2495                           	line	30
+  2496                           	global	__size_of_K2
+  2497                           	__size_of_K2	equ	__end_of_K2-_K2
+  2498  0008                     	
+  2499                           _K2:	
+  2500  0651                     ;incstack = 0
+  2501                           	opt	stack 7
+  2502                           ; Regs used in _K2: [wreg+status,0]
+  2503                           	line	32
+  2504                           	
+  2505                           l780:	
+  2506  0651                     ;../partidaEstrelaTriangulo.X/contatores.c: 30: void K2 (int x);../partidaEstrelaTriangu
+                                 lo.X/contatores.c: 31: {;../partidaEstrelaTriangulo.X/contatores.c: 32:     PORTDbits.RD
+                                 6 = x;
+  2507                           	rrf	(K2@x),w
+  2508  0651  0C70               	bcf	status, 5	;RP0=0, select bank0
+  2509  0652  1283               	bcf	status, 6	;RP1=0, select bank0
+  2510  0653  1303               	skipc
+  2511  0654  1C03               	bcf	(8),6	;volatile
+  2512  0655  1308               	skipnc
+  2513  0656  1803               	bsf	(8),6	;volatile
+  2514  0657  1708               	line	33
+  2515                           	
+  2516                           l92:	
+  2517  0658                     	return
+  2518  0658  0008               	opt stack 0
+  2519                           GLOBAL	__end_of_K2
+  2520                           	__end_of_K2:
+  2521  0659                     	signat	_K2,4217
+  2522                           	global	_K1
+  2523                           
+  2524 ;; *************** function _K1 *****************
+  2525 ;; Defined at:
+  2526 ;;		line 24 in file "../partidaEstrelaTriangulo.X/contatores.c"
+  2527 ;; Parameters:    Size  Location     Type
+  2528 ;;  x               2    0[COMMON] int 
+  2529 ;; Auto vars:     Size  Location     Type
+  2530 ;;		None
+  2531 ;; Return value:  Size  Location     Type
+  2532 ;;                  1    wreg      void 
+  2533 ;; Registers used:
+  2534 ;;		wreg, status,0
+  2535 ;; Tracked objects:
+  2536 ;;		On entry : 0/0
+  2537 ;;		On exit  : 0/0
+  2538 ;;		Unchanged: 0/0
+  2539 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  2540 ;;      Params:         2       0       0       0       0
+  2541 ;;      Locals:         0       0       0       0       0
+  2542 ;;      Temps:          0       0       0       0       0
+  2543 ;;      Totals:         2       0       0       0       0
+  2544 ;;Total ram usage:        2 bytes
+  2545 ;; Hardware stack levels used:    1
+  2546 ;; This function calls:
+  2547 ;;		Nothing
+  2548 ;; This function is called by:
+  2549 ;;		_main
+  2550 ;; This function uses a non-reentrant model
+  2551 ;;
+  2552                           psect	text10,local,class=CODE,delta=2,merge=1,group=0
+  2553                           	line	24
+  2554                           global __ptext10
+  2555                           __ptext10:	;psect for function _K1
+  2556  0649                     psect	text10
+  2557                           	file	"../partidaEstrelaTriangulo.X/contatores.c"
+  2558                           	line	24
+  2559                           	global	__size_of_K1
+  2560                           	__size_of_K1	equ	__end_of_K1-_K1
+  2561  0008                     	
+  2562                           _K1:	
+  2563  0649                     ;incstack = 0
+  2564                           	opt	stack 7
+  2565                           ; Regs used in _K1: [wreg+status,0]
+  2566                           	line	26
+  2567                           	
+  2568                           l778:	
+  2569  0649                     ;../partidaEstrelaTriangulo.X/contatores.c: 24: void K1 (int x);../partidaEstrelaTriangu
+                                 lo.X/contatores.c: 25: {;../partidaEstrelaTriangulo.X/contatores.c: 26:     PORTDbits.RD
+                                 7 = x;
+  2570                           	rrf	(K1@x),w
+  2571  0649  0C70               	bcf	status, 5	;RP0=0, select bank0
+  2572  064A  1283               	bcf	status, 6	;RP1=0, select bank0
+  2573  064B  1303               	skipc
+  2574  064C  1C03               	bcf	(8),7	;volatile
+  2575  064D  1388               	skipnc
+  2576  064E  1803               	bsf	(8),7	;volatile
+  2577  064F  1788               	line	27
+  2578                           	
+  2579                           l89:	
+  2580  0650                     	return
+  2581  0650  0008               	opt stack 0
+  2582                           GLOBAL	__end_of_K1
+  2583                           	__end_of_K1:
+  2584  0651                     	signat	_K1,4217
+  2585                           global	___latbits
+  2586                           ___latbits	equ	2
+  2587  0002                     	global	btemp
+  2588                           	btemp set 07Eh
+  2589  007E                     
+  2590                           	DABS	1,126,2	;btemp
+  2591                           	global	wtemp0
+  2592                           	wtemp0 set btemp+0
+  2593  007E                     	end
 
 
 Data Sizes:
@@ -1727,7 +2674,7 @@ Data Sizes:
 
 Auto Spaces:
     Space          Size  Autos    Used
-    COMMON           14      2       2
+    COMMON           14     10      10
     BANK0            80      0      16
     BANK1            80      0       0
     BANK3            96      0       0
@@ -1739,7 +2686,7 @@ Pointer List with Targets:
 
 Critical Paths under _main in COMMON
 
-    None.
+    _main->_delay
 
 Critical Paths under _main in BANK0
 
@@ -1762,17 +2709,43 @@ Call Graph Tables:
  ---------------------------------------------------------------------------------
  (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
  ---------------------------------------------------------------------------------
- (0) _main                                                 4     4      0      15
-                                              0 COMMON     2     2      0
+ (0) _main                                                 7     7      0    1320
+                                              3 COMMON     7     7      0
+                                 _K1
+                                 _K2
+                                 _K3
                         _botoes_init
                     _contatores_init
+                              _delay
+                        _display7seg
                    _display7seg_init
+                                 _s0
+                                 _s1
+ ---------------------------------------------------------------------------------
+ (1) _s1                                                   0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _s0                                                   0     0      0       0
  ---------------------------------------------------------------------------------
  (1) _display7seg_init                                     0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _display7seg                                          2     0      2     142
+                                              0 COMMON     2     0      2
+ ---------------------------------------------------------------------------------
+ (1) _delay                                                3     1      2      99
+                                              0 COMMON     3     1      2
  ---------------------------------------------------------------------------------
  (1) _contatores_init                                      0     0      0       0
  ---------------------------------------------------------------------------------
  (1) _botoes_init                                          0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _K3                                                   2     0      2     326
+                                              0 COMMON     2     0      2
+ ---------------------------------------------------------------------------------
+ (1) _K2                                                   2     0      2     326
+                                              0 COMMON     2     0      2
+ ---------------------------------------------------------------------------------
+ (1) _K1                                                   2     0      2     326
+                                              0 COMMON     2     0      2
  ---------------------------------------------------------------------------------
  Estimated maximum stack depth 1
  ---------------------------------------------------------------------------------
@@ -1780,9 +2753,16 @@ Call Graph Tables:
  Call Graph Graphs:
 
  _main (ROOT)
+   _K1
+   _K2
+   _K3
    _botoes_init
    _contatores_init
+   _delay
+   _display7seg
    _display7seg_init
+   _s0
+   _s1
 
  Address spaces:
 Name               Size   Autos  Total    Cost      Usage
@@ -1802,43 +2782,85 @@ BANK0               50      0      10       5       20.0%
 BITBANK0            50      0       0       4        0.0%
 SFR0                 0      0       0       1        0.0%
 BITSFR0              0      0       0       1        0.0%
-COMMON               E      2       2       1       14.3%
+COMMON               E      A       A       1       71.4%
 BITCOMMON            E      0       0       0        0.0%
 CODE                 0      0       0       0        0.0%
-DATA                 0      0      12      12        0.0%
-ABS                  0      0      12       3        0.0%
+DATA                 0      0      1A      12        0.0%
+ABS                  0      0      1A       3        0.0%
 NULL                 0      0       0       0        0.0%
 STACK                0      0       0       2        0.0%
 EEDATA             100      0       0       0        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.00 build -1524193055 
-Symbol Table                                                                                   Wed Mar 03 16:55:47 2021
+Symbol Table                                                                                   Thu Mar 04 15:34:03 2021
 
-                        pc 0002                __CFG_CP$OFF 0000                         l11 07C5  
-                       l12 07DC                         l13 07C6                         l14 07E9  
-                       l15 07DA                         l16 07EA                         l25 0789  
-                       l17 07EB                         l50 0793                         l18 07EB  
-                       l62 079E                         fsr 0004                        l650 07C2  
-                      l644 0785                        l724 07E1                        l652 07C6  
-                      l646 0794                        l654 07D5                        l648 078A  
-                      l656 07DB                        l658 07DC               __CFG_CPD$OFF 0000  
-             ?_botoes_init 0070                        indf 0000               __CFG_LVP$OFF 0000  
-             __CFG_WRT$OFF 0000                       _main 07C2                       btemp 007E  
+             ?_display7seg 0070                          pc 0002                __CFG_CP$OFF 0000  
+                       _K1 0649                         _K2 0651                         _K3 0659  
+                       l30 06FB                         l31 06FC                         l40 07EA  
+                       l32 071F                         l41 07EB                         l33 0746  
+                       l25 06D7                         l42 07EB                         l26 07B9  
+                       l34 0767                         l35 0768                         l27 06D8  
+                       l60 06A8                         l52 0648                         l28 07D5  
+                       l36 0771                         l61 069A                         l37 079A  
+                       l29 06EC                         l62 06AF                         l38 079B  
+                       l63 06AF                         l55 0642                         l39 07E9  
+                       l49 063C                         l74 066A                         l92 0658  
+                       l77 06CA                         l86 0675                         l78 06CE  
+                       l95 0660                         l79 06CE                         l89 0650  
+                       u90 06AE                         u91 06AD                         _s0 063D  
+                       _s1 0643                         fsr 0004                        K1@x 0070  
+                      K2@x 0070                        K3@x 0070                        ?_K1 0070  
+                      ?_K2 0070                        ?_K3 0070                        ?_s0 0070  
+                      ?_s1 0070                        l800 06D4                        l810 06FC  
+                      l802 06D8                        l820 0741                        l812 0716  
+                      l804 06E7                        l670 0638                        l830 076C  
+                      l822 0746                        l814 071A                        l806 06EC  
+                      l672 066B                        l840 07B8                        l832 0771  
+                      l824 0755                        l816 071F                        l808 06F6  
+                      l674 0643                        l834 0795                        l826 0762  
+                      l818 0729                        l842 07B9                        l780 0651  
+                      l668 0661                        l684 063D                        l676 0648  
+                      l836 079B                        l828 0768                        l844 07D5  
+                      l782 0659                        l790 06B0                        l686 0642  
+                      l846 07E1                        l838 07B3                        l784 0699  
+                      l792 06B4                        l848 07E7                        l778 0649  
+                      l786 069A                        l794 06C1                        l874 07BE  
+                      l788 06A8                        l796 06CA                        l798 06CF  
+                      u100 06B4                        u101 06B3                        u110 06C1  
+                      u111 06C0                        u120 06F6                        u121 06F5  
+                      u130 0729                        u115 06BD                        u131 0728  
+                      u140 0762                        u141 0761                        u150 0795  
+                      u151 0794                        u160 07E7                        u161 07E6  
+                      u145 075E                        u177 06A2               __CFG_CPD$OFF 0000  
+             ?_botoes_init 0070                        fsr0 0004                        indf 0000  
+                     ??_K1 0072                       ??_K2 0072                       ??_K3 0072  
+                     ??_s0 0070                       ??_s1 0070               __CFG_LVP$OFF 0000  
+             __CFG_WRT$OFF 0000                       _main 06CF                       btemp 007E  
                      start 0000              __CFG_IESO$OFF 0000                      ?_main 0070  
             __CFG_WDTE$OFF 0000                      _PORTB 0006                      _TRISB 0086  
-           __CFG_FCMEN$OFF 0000                      _vetor 0020             __CFG_BOREN$OFF 0000  
+             display7seg@c 0070             __CFG_FCMEN$OFF 0000                      _delay 0699  
+                    _vetor 0020                      main@t 0075             __CFG_BOREN$OFF 0000  
                     pclath 000A                      status 0003                      wtemp0 007E  
            __CFG_MCLRE$OFF 0000            __initialization 07EE               __end_of_main 07EE  
-                   ??_main 0070                     _ANSELH 0189             __CFG_PWRTE$OFF 0000  
-        ?_display7seg_init 0070         ??_display7seg_init 0070            _contatores_init 0794  
+                   ??_main 0073                     ?_delay 0070                     _ANSELH 0189  
+           __CFG_PWRTE$OFF 0000          ?_display7seg_init 0070         ??_display7seg_init 0070  
+                   delay@t 0070       __size_of_display7seg 001F            _contatores_init 066B  
      __size_of_botoes_init 0005    __end_of__initialization 07FC             __pcstackCOMMON 0070  
-             __pidataBANK0 079F                 __pmaintext 07C2    __end_of_contatores_init 079F  
-                  __ptext1 078A                    __ptext2 0794                    __ptext3 0785  
-     end_of_initialization 07FC                  _PORTDbits 0008           ?_contatores_init 0070  
-__size_of_display7seg_init 000A                  _TRISDbits 0088                 main@estado 0070  
-            ??_botoes_init 0070        start_initialization 07EE   __CFG_FOSC$INTRC_NOCLKOUT 0000  
-               init_fetch0 07AF                __pdataBANK0 0020                  ___latbits 0002  
-      __end_of_botoes_init 078A           _display7seg_init 078A                _botoes_init 0785  
-        __CFG_BOR4V$BOR40V 0000   __size_of_contatores_init 000B              __size_of_main 002C  
-                 init_ram0 07B3   __end_of_display7seg_init 0794          ??_contatores_init 0070  
+             __pidataBANK0 0676              __end_of_delay 06B0                 __end_of_K1 0651  
+               __end_of_K2 0659                 __end_of_K3 0661                 __end_of_s0 0643  
+               __end_of_s1 0649                    ??_delay 0072                 __pmaintext 06CF  
+  __end_of_contatores_init 0676                    __ptext1 0643                    __ptext2 063D  
+                  __ptext3 0661                    __ptext4 06B0                    __ptext5 0699  
+                  __ptext6 066B                    __ptext7 0638                    __ptext8 0659  
+                  __ptext9 0651       end_of_initialization 07FC                  _PORTDbits 0008  
+         ?_contatores_init 0070  __size_of_display7seg_init 000A                  _TRISDbits 0088  
+               main@estado 0078              ??_display7seg 0072              ??_botoes_init 0070  
+      start_initialization 07EE   __CFG_FOSC$INTRC_NOCLKOUT 0000                 init_fetch0 0686  
+              __pdataBANK0 0020        __end_of_display7seg 06CF                  ___latbits 0002  
+      __end_of_botoes_init 063D           _display7seg_init 0661             __size_of_delay 0017  
+              __size_of_K1 0008                __size_of_K2 0008                __size_of_K3 0008  
+              __size_of_s0 0006                __size_of_s1 0006                _display7seg 06B0  
+              _botoes_init 0638                   __ptext10 0649          __CFG_BOR4V$BOR40V 0000  
+ __size_of_contatores_init 000B              __size_of_main 011F                   main@cont 0077  
+                 init_ram0 068A   __end_of_display7seg_init 066B          ??_contatores_init 0070  
